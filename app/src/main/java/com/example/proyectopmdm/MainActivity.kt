@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initEvent() {
-        binding.tvUsuario.setText(binding.tvUsuario.text.toString() + intent.getStringExtra("user"))
-        binding.tvPassword.setText(binding.tvPassword.text.toString() + intent.getStringExtra("pass"))
+        val user = intent.getStringExtra("user")
+        binding.tvSaludo.text = binding.tvSaludo.text.toString() + user
     }
 }

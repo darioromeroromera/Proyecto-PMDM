@@ -7,8 +7,8 @@ import android.widget.Toast
 import com.example.proyectopmdm.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
-    val MYUSER = R.string.user
-    val MYPASS = R.string.password
+    private lateinit var myuser: String
+    private lateinit var mypass: String
     lateinit var binding : ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,15 +18,19 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initEvent() {
+        myuser = getString(R.string.user)
+        mypass = getString(R.string.password)
         binding.btnLogin.setOnClickListener { view ->
-            if (binding.etUsuario.text.toString().equals(MYUSER) && binding.etPassword.text.toString().equals(MYPASS)) {
+            Toast.makeText(this, "user: ${myuser}, pass: ${mypass}", Toast.LENGTH_LONG).show()
+            if (binding.etUsuario.text.toString().equals(myuser) && binding.etPassword.text.toString().equals(mypass)) {
                 val intent = Intent(this, MainActivity::class.java).putExtra(
                     "user", binding.etUsuario.text.toString()
                 )
 
                 startActivity(intent)
             } else
-                Toast.makeText(this, "Usuario y/o contraseña incorrectos", Toast.LENGTH_LONG).show()
+                1 == 1
+                //Toast.makeText(this, "Usuario y/o contraseña incorrectos", Toast.LENGTH_LONG).show()
         }
         binding.btnRegister.setOnClickListener { view ->
             Toast.makeText(this, "Funcionalidad no implementada",Toast.LENGTH_LONG).show()
