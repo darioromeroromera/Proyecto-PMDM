@@ -13,7 +13,15 @@ object Repository {
             "https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg"
         ),
         Contacto(
-            "Tía Lucía", "Lucía Hoyos Fuentes", "621 20 12 77",
+            "Tía Lucía", "Lucía Hoyos Fuentes", "953 42 28 93",
+            "https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg"
+        ),
+        Contacto(
+            "Chema", "Jose María Martínez", "675 38 19 82",
+            "https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg"
+        ),
+        Contacto(
+            "Santi", "Santiago Ródenas", "953 22 93 95",
             "https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg"
         )
     )
