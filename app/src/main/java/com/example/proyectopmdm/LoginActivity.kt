@@ -21,10 +21,9 @@ class LoginActivity : AppCompatActivity() {
         myuser = getString(R.string.user)
         mypass = getString(R.string.password)
         binding.btnLogin.setOnClickListener { view ->
-            Toast.makeText(this, "user: ${myuser}, pass: ${mypass}", Toast.LENGTH_LONG).show()
-            if (binding.etUsuario.text.toString().equals(myuser) && binding.etPassword.text.toString().equals(mypass)) {
+            if (binding.etUsuario.text.toString().trim().equals(myuser) && binding.etPassword.text.toString().equals(mypass)) {
                 val intent = Intent(this, MainActivity::class.java).putExtra(
-                    "user", binding.etUsuario.text.toString()
+                    "user", binding.etUsuario.text.toString().trim()
                 )
 
                 startActivity(intent)

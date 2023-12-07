@@ -18,10 +18,7 @@ class ViewHContacto(view: View,
         binding.tvNombreContacto.text = contacto.nombre
         binding.tvNombreCompleto.text = contacto.nombreCompleto
         binding.tvTelefono.text = contacto.telefono
-        Glide.with(itemView.context)
-            .load(contacto.imagen)
-            .centerCrop()
-            .into(binding.ivContacto)
+        Glide.with(itemView.context).load(contacto.imagen).centerCrop().into(binding.ivContacto)
         setOnClickListener(adapterPosition)
     }
 
