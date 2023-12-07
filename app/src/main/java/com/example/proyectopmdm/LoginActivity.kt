@@ -29,8 +29,7 @@ class LoginActivity : AppCompatActivity() {
 
                 startActivity(intent)
             } else
-                1 == 1
-                //Toast.makeText(this, "Usuario y/o contraseña incorrectos", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Usuario y/o contraseña incorrectos", Toast.LENGTH_LONG).show()
         }
         binding.btnRegister.setOnClickListener { view ->
             Toast.makeText(this, "Funcionalidad no implementada",Toast.LENGTH_LONG).show()
