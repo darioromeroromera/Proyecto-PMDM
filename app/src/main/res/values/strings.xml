@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Proyecto PMDM</string>
+    <string name="texto_usuario">"Usuario: "</string>
+    <string name="texto_contrasenna">"Contraseña: "</string>
+    <string name="identificacion">Soy Darío</string>
+    <string name="texto_presentacion">Bienvenido a la app de Darío</string>
+    <string name="texto_login">Iniciar sesión</string>
+    <string name="texto_registrarse">Registrarse</string>
+</resources>
