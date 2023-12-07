@@ -21,7 +21,27 @@ object Repository {
             "https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg"
         ),
         Contacto(
-            "Santi", "Santiago Ródenas", "953 22 93 95",
+            "Santi", "Santiago Pérez", "953 22 93 95",
+            "https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg"
+        ),
+        Contacto(
+            "Ana", "Ana Verdana Solas", "677 42 21 03",
+            "https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg"
+        ),
+        Contacto(
+            "Gabi", "Gabriel Eusebio Molina", "953 22 30 80",
+            "https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg"
+        ),
+        Contacto(
+            "Alfred", "Alfredo Galbán Montoya", "953 21 62 09",
+            "https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg"
+        ),
+        Contacto(
+            "Juanjo", "Juan José Mesa", "953 87 43 42",
+            "https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg"
+        ),
+        Contacto(
+            "Manolo", "Manuel Molejo Millar", "953 27 53 52",
             "https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg"
         )
     )
