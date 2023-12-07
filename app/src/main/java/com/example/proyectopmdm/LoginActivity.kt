@@ -7,8 +7,8 @@ import android.widget.Toast
 import com.example.proyectopmdm.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
-    val MYUSER = "Dario"
-    val MYPASS = "1234"
+    val MYUSER = R.string.user
+    val MYPASS = R.string.password
     lateinit var binding : ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,9 +22,8 @@ class LoginActivity : AppCompatActivity() {
             if (binding.etUsuario.text.toString().equals(MYUSER) && binding.etPassword.text.toString().equals(MYPASS)) {
                 val intent = Intent(this, MainActivity::class.java).putExtra(
                     "user", binding.etUsuario.text.toString()
-                ).putExtra(
-                    "pass", binding.etPassword.text.toString()
                 )
+
                 startActivity(intent)
             } else
                 Toast.makeText(this, "Usuario y/o contraseña incorrectos", Toast.LENGTH_LONG).show()

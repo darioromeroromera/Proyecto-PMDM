@@ -45,7 +45,8 @@
             android:inputType="text"
             android:textColor="@color/black"
             android:hint="usuario"
-            android:textColorHint="#999"/>
+            android:textColorHint="#999"
+            android:maxLength="12"/>
 
         <EditText
             android:id="@+id/et_password"
