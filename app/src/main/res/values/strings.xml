@@ -3,7 +3,5 @@
     <string name="texto_presentacion">Bienvenido a la app de Darío</string>
     <string name="texto_login">Iniciar sesión</string>
     <string name="texto_registrarse">Registrarse</string>
-    <string name="user">Dario</string>
-    <string name="password">1234</string>
     <string name="texto_saludo">"Hola "</string>
 </resources>
