@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.proyectopmdm.MainActivity
 import com.example.proyectopmdm.adapter.ContactoAdapter
 import com.example.proyectopmdm.dao.ContactosDao
+import com.example.proyectopmdm.dialogues.DeleteDialogue
 import com.example.proyectopmdm.models.Contacto
 
 class Controller(val context: Context){
@@ -18,12 +19,30 @@ class Controller(val context: Context){
     fun setAdapter() {
         val myActivity = context as MainActivity
         adapter = ContactoAdapter(listaContactos, {
-                pos -> delHotel(pos)
+                pos -> delContact(pos)
         })
         myActivity.binding.rvContactos.adapter = adapter
     }
 
-    private fun delHotel(pos: Int) {
+    private fun delContact(pos: Int) {
+        /*listaContactos.removeAt(pos)
+        adapter.notifyItemRemoved(pos)
+        adapter.notifyItemChanged(pos)
+        adapter.notifyDataSetChanged()*/
+
+        val mainActivity = context as MainActivity
+
+        val dialog = DeleteDialogue(
+            pos,
+            listaContactos.get(pos).nombreCompleto,
+            {
+            pos -> okOnDeleteContact(pos)
+        })
+        dialog.show(mainActivity.supportFragmentManager, "Borrado")
+
+    }
+
+    private fun okOnDeleteContact(pos: Int) {
         listaContactos.removeAt(pos)
         adapter.notifyItemRemoved(pos)
         adapter.notifyItemChanged(pos)
