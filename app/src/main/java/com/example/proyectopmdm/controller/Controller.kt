@@ -7,6 +7,7 @@ import com.example.proyectopmdm.adapter.ContactoAdapter
 import com.example.proyectopmdm.dao.ContactosDao
 import com.example.proyectopmdm.dialogues.CreateDialogue
 import com.example.proyectopmdm.dialogues.DeleteDialogue
+import com.example.proyectopmdm.dialogues.EditDialogue
 import com.example.proyectopmdm.models.Contacto
 
 class Controller(val context: Context){
@@ -30,7 +31,10 @@ class Controller(val context: Context){
     fun setAdapter() {
         adapter = ContactoAdapter(listaContactos, {
                 pos -> delContact(pos)
-        })
+        },
+            {
+                pos, contacto -> editContacto(pos, contacto)
+            })
         mainActivity.binding.rvContactos.adapter = adapter
     }
 
@@ -38,6 +42,26 @@ class Controller(val context: Context){
         mainActivity.binding.fbAdd.setOnClickListener { view ->
             addContacto()
         }
+    }
+
+    private fun editContacto(pos: Int, contacto: Contacto) {
+        val dialog = EditDialogue(
+            pos,
+            contacto,
+            {
+                contact, pos -> okOnEditContact(contact, pos)
+            }
+        )
+        dialog.show(mainActivity.supportFragmentManager, "Editar")
+    }
+
+    private fun okOnEditContact(contact: Contacto, pos: Int) {
+        val oldContacto = listaContactos.get(pos)
+        oldContacto.nombre = contact.nombre
+        oldContacto.nombreCompleto = contact.nombreCompleto
+        oldContacto.telefono = contact.telefono
+        oldContacto.imagen = contact.imagen
+        adapter.notifyItemChanged(pos)
     }
 
     private fun addContacto() {

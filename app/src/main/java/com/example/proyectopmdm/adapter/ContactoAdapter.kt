@@ -7,11 +7,12 @@ import com.example.proyectopmdm.R
 import com.example.proyectopmdm.models.Contacto
 
 class ContactoAdapter(val listaContactos: MutableList<Contacto>,
-                       var deleteOnClick: (Int) -> Unit): RecyclerView.Adapter<ViewHContacto>() {
+                       var deleteOnClick: (Int) -> Unit,
+                        var editOnClick: (Int, Contacto) -> Unit): RecyclerView.Adapter<ViewHContacto>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHContacto {
         val layoutInflater = LayoutInflater.from(parent.context)
         val cardViewLayout = R.layout.cardview_layout
-        return ViewHContacto(layoutInflater.inflate(cardViewLayout, parent, false), deleteOnClick)
+        return ViewHContacto(layoutInflater.inflate(cardViewLayout, parent, false), deleteOnClick, editOnClick)
     }
 
     override fun onBindViewHolder(holder: ViewHContacto, position: Int) {

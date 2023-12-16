@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import java.lang.IllegalStateException
 
@@ -22,6 +23,7 @@ class DeleteDialogue(
                 })
             builder.setNegativeButton("No",
                 DialogInterface.OnClickListener { dialog, id ->
+                    Toast.makeText(activity, "Operación cancelada", Toast.LENGTH_LONG).show()
                     getDialog()?.dismiss()
                 })
 
