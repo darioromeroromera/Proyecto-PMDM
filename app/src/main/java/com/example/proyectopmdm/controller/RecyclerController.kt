@@ -1,16 +1,20 @@
 package com.example.proyectopmdm.controller
 
 import android.content.Context
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyectopmdm.MainActivity
 import com.example.proyectopmdm.adapter.ContactoAdapter
 import com.example.proyectopmdm.dao.ContactosDao
+import com.example.proyectopmdm.databinding.FragmentRecyclerBinding
 import com.example.proyectopmdm.dialogues.CreateDialogue
 import com.example.proyectopmdm.dialogues.DeleteDialogue
 import com.example.proyectopmdm.dialogues.EditDialogue
 import com.example.proyectopmdm.models.Contacto
 
-class Controller(val context: Context){
+class RecyclerController(
+    val context: FragmentActivity,
+    val fragmentBinding: FragmentRecyclerBinding){
     lateinit var listaContactos: MutableList<Contacto>
     lateinit var adapter : ContactoAdapter
     lateinit var mainActivity: MainActivity
@@ -22,10 +26,12 @@ class Controller(val context: Context){
         initLayoutManager()
         setAdapter()
         initEvent()
+        initEvent()
+
     }
 
     private fun initLayoutManager() {
-        layoutManager = mainActivity.binding.rvContactos.layoutManager as LinearLayoutManager
+        layoutManager = fragmentBinding.rvContactos.layoutManager as LinearLayoutManager
     }
 
     fun setAdapter() {
@@ -35,11 +41,11 @@ class Controller(val context: Context){
             {
                 pos, contacto -> editContacto(pos, contacto)
             })
-        mainActivity.binding.rvContactos.adapter = adapter
+        fragmentBinding.rvContactos.adapter = adapter
     }
 
     private fun initEvent() {
-        mainActivity.binding.fbAdd.setOnClickListener { view ->
+        fragmentBinding.fbAdd.setOnClickListener { view ->
             addContacto()
         }
     }
@@ -88,7 +94,6 @@ class Controller(val context: Context){
             pos -> okOnDeleteContact(pos)
         })
         dialog.show(mainActivity.supportFragmentManager, "Borrar")
-
     }
 
     private fun okOnDeleteContact(pos: Int) {
@@ -97,4 +102,5 @@ class Controller(val context: Context){
         adapter.notifyItemChanged(pos)
         adapter.notifyDataSetChanged()
     }
+
 }

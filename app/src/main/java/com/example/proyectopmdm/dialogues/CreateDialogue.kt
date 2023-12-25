@@ -12,6 +12,8 @@ import com.example.proyectopmdm.databinding.DialogLayoutBinding
 import com.example.proyectopmdm.models.Contacto
 import java.lang.IllegalStateException
 
+// Programa de Darío
+
 class CreateDialogue(
     var okOnCreateContact: (Contacto) -> Unit
 ) : DialogFragment() {
