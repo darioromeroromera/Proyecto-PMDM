@@ -48,7 +48,8 @@ class CreateDialogue(
             binding.etNombre.text.toString(),
             binding.etNombreCompleto.text.toString(),
             binding.etTelefono.text.toString(),
-            binding.etImagen.text.toString()
+            binding.etImagen.text.toString(),
+            binding.etDetalles.text.toString()
         )
     }
 

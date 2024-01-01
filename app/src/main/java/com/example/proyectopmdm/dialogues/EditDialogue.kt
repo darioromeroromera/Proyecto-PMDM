@@ -25,6 +25,7 @@ class EditDialogue(
             putString(Fields.FULL_NAME_FIELD, contacto.nombreCompleto)
             putString(Fields.PHONE_FIELD, contacto.telefono)
             putString(Fields.URL_FIELD, contacto.imagen)
+            putString(Fields.DETAIL_FIELD, contacto.detalles)
         }
         this.arguments = args
     }
@@ -62,6 +63,7 @@ class EditDialogue(
             binding.etNombreCompleto.setText(args.getString(Fields.FULL_NAME_FIELD))
             binding.etTelefono.setText(args.getString(Fields.PHONE_FIELD))
             binding.etImagen.setText(args.getString(Fields.URL_FIELD))
+            binding.etDetalles.setText(args.getString(Fields.DETAIL_FIELD))
         }
     }
 
@@ -71,7 +73,8 @@ class EditDialogue(
             binding.etNombre.text.toString(),
             binding.etNombreCompleto.text.toString(),
             binding.etTelefono.text.toString(),
-            binding.etImagen.text.toString()
+            binding.etImagen.text.toString(),
+            binding.etDetalles.text.toString()
         )
     }
 

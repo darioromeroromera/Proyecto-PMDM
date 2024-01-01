@@ -33,5 +33,11 @@
         android:layout_height="wrap_content"
         android:hint="URL de imagen"
         />
+    <EditText
+        android:id="@+id/et_detalles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Detalles del contacto"
+        />
 
 </LinearLayout>

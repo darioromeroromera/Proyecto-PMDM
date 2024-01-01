@@ -1,23 +1,27 @@
 package com.example.proyectopmdm.controller
 
 import android.content.Context
+import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyectopmdm.MainActivity
+import com.example.proyectopmdm.R
 import com.example.proyectopmdm.adapter.ContactoAdapter
 import com.example.proyectopmdm.dao.ContactosDao
 import com.example.proyectopmdm.databinding.FragmentRecyclerBinding
 import com.example.proyectopmdm.dialogues.CreateDialogue
 import com.example.proyectopmdm.dialogues.DeleteDialogue
 import com.example.proyectopmdm.dialogues.EditDialogue
+import com.example.proyectopmdm.fragments.RecyclerFragmentDirections
 import com.example.proyectopmdm.models.Contacto
 
 class RecyclerController(
     val context: FragmentActivity,
     val fragmentBinding: FragmentRecyclerBinding){
-    lateinit var listaContactos: MutableList<Contacto>
+    var listaContactos: MutableList<Contacto>
     lateinit var adapter : ContactoAdapter
-    lateinit var mainActivity: MainActivity
+    var mainActivity: MainActivity
     lateinit var layoutManager: LinearLayoutManager
 
     init {
@@ -40,6 +44,13 @@ class RecyclerController(
         },
             {
                 pos, contacto -> editContacto(pos, contacto)
+            },
+            { contacto ->
+                val navController = fragmentBinding.rvContactos.findNavController()
+                navController.navigate(RecyclerFragmentDirections.actionRecyclerFragmentToDetailsFragment(
+                    nombre=contacto.nombre, nombreCompleto = contacto.nombreCompleto, telefono = contacto.telefono,
+                    imagen = contacto.imagen, detalles = contacto.detalles
+                ))
             })
         fragmentBinding.rvContactos.adapter = adapter
     }
@@ -67,6 +78,7 @@ class RecyclerController(
         oldContacto.nombreCompleto = contact.nombreCompleto
         oldContacto.telefono = contact.telefono
         oldContacto.imagen = contact.imagen
+        oldContacto.detalles = contact.detalles
         adapter.notifyItemChanged(pos)
     }
 

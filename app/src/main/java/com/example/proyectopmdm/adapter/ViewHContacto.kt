@@ -1,6 +1,7 @@
 package com.example.proyectopmdm.adapter
 
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.proyectopmdm.databinding.CardviewLayoutBinding
@@ -8,7 +9,8 @@ import com.example.proyectopmdm.models.Contacto
 
 class ViewHContacto(view: View,
                     var deleteOnClick: (Int) -> Unit,
-                    var editOnClick: (Int, Contacto) -> Unit) : RecyclerView.ViewHolder(view) {
+                    var editOnClick: (Int, Contacto) -> Unit,
+                    var infoOnClick: (Contacto) -> Unit) : RecyclerView.ViewHolder(view) {
     var binding: CardviewLayoutBinding
 
     init {
@@ -30,6 +32,10 @@ class ViewHContacto(view: View,
 
         binding.btnEdit.setOnClickListener { view ->
             editOnClick(position, contacto)
+        }
+
+        binding.btnInfo.setOnClickListener { view ->
+            infoOnClick(contacto)
         }
     }
 }
