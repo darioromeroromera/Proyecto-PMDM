@@ -24,7 +24,6 @@ class RecyclerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Toast.makeText(requireActivity(), "Creado fragmento", Toast.LENGTH_SHORT).show()
         binding = FragmentRecyclerBinding.inflate(inflater, container, false)
         return binding.root
     }
