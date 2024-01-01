@@ -25,8 +25,8 @@ class RecyclerController(
     lateinit var layoutManager: LinearLayoutManager
 
     init {
-        listaContactos = ContactosDao.dao.getContactsData().toMutableList()
         mainActivity = context as MainActivity
+        listaContactos = mainActivity.listaContactos
         initLayoutManager()
         setAdapter()
         initEvent()

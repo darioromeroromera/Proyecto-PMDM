@@ -8,13 +8,16 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.proyectopmdm.controller.RecyclerController
+import com.example.proyectopmdm.dao.ContactosDao
 import com.example.proyectopmdm.databinding.ActivityMainBinding
 import com.example.proyectopmdm.fragments.RecyclerFragment
+import com.example.proyectopmdm.models.Contacto
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController : NavController
+    lateinit var listaContactos: MutableList<Contacto>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +25,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         initNavElements()
+        initList()
         initEvent()
+    }
+
+    private fun initList() {
+        listaContactos = ContactosDao.dao.getContactsData().toMutableList()
     }
 
     private fun initNavElements() {
