@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Home"/>
+    <item
+        android:id="@+id/securityFragment"
+        android:icon="@drawable/baseline_lock_24"
+        android:title="Security"/>
+    <item
+        android:title=""
+        />
+    <item
+        android:id="@+id/anchoredContactsFragment"
+        android:icon="@drawable/baseline_anchor_24"
+        android:title="Anchored"
+        />
+    <item
+        android:id="@+id/blockedContactsFragment"
+        android:icon="@drawable/baseline_do_disturb_24"
+        android:title="Blocked"
+        />
+</menu>

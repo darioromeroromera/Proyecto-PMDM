@@ -4,9 +4,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
+import android.widget.Toast
+import androidx.drawerlayout.widget.DrawerLayout.DrawerListener
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.proyectopmdm.controller.RecyclerController
 import com.example.proyectopmdm.dao.ContactosDao
 import com.example.proyectopmdm.databinding.ActivityMainBinding
@@ -17,16 +24,45 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController : NavController
+    private lateinit var appBarConfiguration: AppBarConfiguration
     lateinit var listaContactos: MutableList<Contacto>
+    private lateinit var user : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(binding.appBarContainerView.toolbar)
+        setUser()
         initNavElements()
+        initDrawer()
+        initBottom()
         initList()
         initEvent()
+    }
+
+    private fun initBottom() {
+        binding.appBarContainerView.appBottomBar.bottomNavigation.setupWithNavController(navController)
+    }
+
+    private fun setUser() {
+        user = intent.getStringExtra("user").toString()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        Toast.makeText(this, "Pulsada navegación", Toast.LENGTH_SHORT)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private fun initDrawer() {
+        val navigationView = binding.drawerNavigationView
+        appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.homeFragment,R.id.recyclerFragment, R.id.aboutUsFragment, R.id.securityFragment), binding.mainDrawer)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navigationView.setupWithNavController(navController)
+        val drawerHeader = navigationView.getHeaderView(0)
+        val textViewUserName = drawerHeader.findViewById<TextView>(R.id.tv_username)
+        textViewUserName.text = user
     }
 
     private fun initList() {
@@ -45,12 +81,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.tbitem_home -> {
-                navController.navigate(R.id.homeFragment)
-                true
-            }
-            R.id.tbitem_contacts -> {
-                navController.navigate(R.id.recyclerFragment)
+            R.id.tbitem_settings -> {
+                navController.navigate(R.id.settingsFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -58,7 +90,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initEvent() {
-        val user = intent.getStringExtra("user")
-        binding.tvSaludo.text = binding.tvSaludo.text.toString() + user
+        binding.appBarContainerView.tvSaludo.text = binding.appBarContainerView.tvSaludo.text.toString() + user
     }
 }

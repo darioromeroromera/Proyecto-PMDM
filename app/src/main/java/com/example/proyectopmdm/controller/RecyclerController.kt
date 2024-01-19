@@ -30,8 +30,6 @@ class RecyclerController(
         initLayoutManager()
         setAdapter()
         initEvent()
-        initEvent()
-
     }
 
     private fun initLayoutManager() {

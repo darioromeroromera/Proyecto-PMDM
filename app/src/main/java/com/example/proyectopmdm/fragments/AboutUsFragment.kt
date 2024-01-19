@@ -6,16 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.proyectopmdm.MainActivity
-import com.example.proyectopmdm.databinding.FragmentHomeBinding
+import com.example.proyectopmdm.databinding.FragmentAboutUsBinding
+import com.example.proyectopmdm.databinding.FragmentSettingsBinding
 
-class HomeFragment : Fragment() {
-    private lateinit var binding : FragmentHomeBinding
+class AboutUsFragment : Fragment() {
+    private lateinit var binding : FragmentAboutUsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentAboutUsBinding.inflate(inflater, container, false)
         return binding.root
     }
 }

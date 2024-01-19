@@ -3,13 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <item
-        android:id="@+id/tbitem_home"
-        android:title="Home"
+        android:id="@+id/tbitem_settings"
+        android:title="Settings"
         app:showAsAction="never"
     />
-    <item
-        android:id="@+id/tbitem_contacts"
-        android:title="Contacts"
-        app:showAsAction="never"
-        />
 </menu>

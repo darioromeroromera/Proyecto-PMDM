@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.proyectopmdm.fragments.HomeFragment"
-        android:label="fragment_start"
+        android:label="@string/empty_label"
         tools:layout="@layout/fragment_home"
         >
         <action
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/recyclerFragment"
         android:name="com.example.proyectopmdm.fragments.RecyclerFragment"
-        android:label="fragment_contacts"
+        android:label="@string/empty_label"
         tools:layout="@layout/fragment_recycler" >
         <action
             android:id="@+id/action_recyclerFragment_to_homeFragment"
@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.proyectopmdm.fragments.DetailFragment"
-        android:label="fragment_contact_detail"
+        android:label="@string/empty_label"
         tools:layout="@layout/fragment_detail"
         >
         <action
@@ -58,4 +58,39 @@
             app:argType="string" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.proyectopmdm.fragments.SettingsFragment"
+        android:label="@string/empty_label"
+        tools:layout="@layout/fragment_settings" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="com.example.proyectopmdm.fragments.AboutUsFragment"
+        android:label="@string/empty_label"
+        tools:layout="@layout/fragment_about_us"
+        ></fragment>
+
+    <fragment
+        android:id="@+id/securityFragment"
+        android:name="com.example.proyectopmdm.fragments.SecurityFragment"
+        android:label="@string/empty_label"
+        tools:layout="@layout/fragment_security"
+        ></fragment>
+
+    <fragment
+        android:id="@+id/anchoredContactsFragment"
+        android:name="com.example.proyectopmdm.fragments.AnchoredContactsFragment"
+        android:label="@string/empty_label"
+        tools:layout="@layout/fragment_anchored_contacts"
+        ></fragment>
+
+    <fragment
+        android:id="@+id/blockedContactsFragment"
+        android:name="com.example.proyectopmdm.fragments.BlockedContactsFragment"
+        android:label="@string/empty_label"
+        tools:layout="@layout/fragment_blocked_contacts"
+        ></fragment>
 </navigation>

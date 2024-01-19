@@ -16,9 +16,9 @@ import com.example.proyectopmdm.controller.RecyclerController
 import com.example.proyectopmdm.databinding.FragmentRecyclerBinding
 
 class RecyclerFragment : Fragment() {
-    lateinit var binding : FragmentRecyclerBinding
-    lateinit var navController : NavController
-    lateinit var recyclerController : RecyclerController
+    lateinit var binding: FragmentRecyclerBinding
+    lateinit var navController: NavController
+    lateinit var recyclerController: RecyclerController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

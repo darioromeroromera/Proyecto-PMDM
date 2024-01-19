@@ -5,17 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.proyectopmdm.MainActivity
-import com.example.proyectopmdm.databinding.FragmentHomeBinding
+import com.example.proyectopmdm.databinding.FragmentAnchoredContactsBinding
 
-class HomeFragment : Fragment() {
-    private lateinit var binding : FragmentHomeBinding
+class AnchoredContactsFragment : Fragment() {
+    private lateinit var binding : FragmentAnchoredContactsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentAnchoredContactsBinding.inflate(inflater, container, false)
         return binding.root
     }
+
 }

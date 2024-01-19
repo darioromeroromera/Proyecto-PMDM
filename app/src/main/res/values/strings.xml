@@ -4,7 +4,7 @@
     <string name="texto_login">Iniciar sesión</string>
     <string name="texto_registrarse">Registrarse</string>
     <string name="texto_saludo">"Hola "</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="app_description">Con esta aplicación podrás guardar contactos de una manera sencilla e intuitiva. Además, podrás ponerle una imagen personalizada a cada contacto, para reconocerlos más fácilmente.</string>
+    <string name="empty_label"></string>
 </resources>

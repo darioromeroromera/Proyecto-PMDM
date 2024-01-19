@@ -77,11 +77,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/texto_login"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textColor="@color/white"
             app:backgroundTint="@null"
             android:background="@drawable/button_shape"
             android:layout_margin="20dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
             />
 
         <Button
@@ -89,10 +91,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/texto_registrarse"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textColor="@color/white"
             app:backgroundTint="@null"
             android:background="@drawable/button_shape"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
             />
     </LinearLayout>
 
