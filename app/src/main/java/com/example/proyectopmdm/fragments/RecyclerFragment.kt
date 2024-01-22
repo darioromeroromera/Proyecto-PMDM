@@ -32,12 +32,9 @@ class RecyclerFragment : Fragment() {
         val controller = mainActivity.recyclerController
         binding.rvContactos.layoutManager = LinearLayoutManager(requireActivity())
         navController = NavHostFragment.findNavController(this)
-        if (controller.isFirstInit) {
-            controller.fragmentBinding = binding
-            controller.initLayoutManager()
-            controller.setAdapter()
-            controller.initEvent()
-            controller.isFirstInit = false
-        }
+        controller.fragmentBinding = binding
+        controller.initLayoutManager()
+        controller.setAdapter()
+        controller.initEvent()
     }
 }

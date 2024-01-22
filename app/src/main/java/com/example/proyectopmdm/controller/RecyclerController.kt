@@ -23,7 +23,6 @@ class RecyclerController(
     var mainActivity: MainActivity
     lateinit var layoutManager: LinearLayoutManager
     lateinit var fragmentBinding: FragmentRecyclerBinding
-    var isFirstInit : Boolean = true
 
     init {
         mainActivity = context as MainActivity
