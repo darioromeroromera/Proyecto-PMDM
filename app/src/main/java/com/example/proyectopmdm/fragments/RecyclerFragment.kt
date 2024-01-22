@@ -18,7 +18,6 @@ import com.example.proyectopmdm.databinding.FragmentRecyclerBinding
 class RecyclerFragment : Fragment() {
     lateinit var binding: FragmentRecyclerBinding
     lateinit var navController: NavController
-    lateinit var recyclerController: RecyclerController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,12 +29,15 @@ class RecyclerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val mainActivity = requireActivity() as MainActivity
+        val controller = mainActivity.recyclerController
         binding.rvContactos.layoutManager = LinearLayoutManager(requireActivity())
         navController = NavHostFragment.findNavController(this)
-        initController()
-    }
-
-    private fun initController() {
-        recyclerController = RecyclerController(requireActivity(), binding)
+        if (controller.isFirstInit) {
+            controller.fragmentBinding = binding
+            controller.initLayoutManager()
+            controller.setAdapter()
+            controller.initEvent()
+            controller.isFirstInit = false
+        }
     }
 }

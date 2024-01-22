@@ -17,22 +17,20 @@ import com.example.proyectopmdm.fragments.RecyclerFragmentDirections
 import com.example.proyectopmdm.models.Contacto
 
 class RecyclerController(
-    val context: FragmentActivity,
-    val fragmentBinding: FragmentRecyclerBinding){
+    val context: FragmentActivity){
     var listaContactos: MutableList<Contacto>
     lateinit var adapter : ContactoAdapter
     var mainActivity: MainActivity
     lateinit var layoutManager: LinearLayoutManager
+    lateinit var fragmentBinding: FragmentRecyclerBinding
+    var isFirstInit : Boolean = true
 
     init {
         mainActivity = context as MainActivity
         listaContactos = mainActivity.listaContactos
-        initLayoutManager()
-        setAdapter()
-        initEvent()
     }
 
-    private fun initLayoutManager() {
+     fun initLayoutManager() {
         layoutManager = fragmentBinding.rvContactos.layoutManager as LinearLayoutManager
     }
 
@@ -53,7 +51,7 @@ class RecyclerController(
         fragmentBinding.rvContactos.adapter = adapter
     }
 
-    private fun initEvent() {
+    fun initEvent() {
         fragmentBinding.fbAdd.setOnClickListener { view ->
             addContacto()
         }

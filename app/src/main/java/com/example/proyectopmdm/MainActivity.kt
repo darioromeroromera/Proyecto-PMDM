@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     lateinit var listaContactos: MutableList<Contacto>
     private lateinit var user : String
+    lateinit var recyclerController: RecyclerController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +35,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.appBarContainerView.toolbar)
         setUser()
+        initList()
         initNavElements()
         initDrawer()
         initBottom()
-        initList()
         initEvent()
+        initController()
+    }
+
+    private fun initController() {
+        recyclerController = RecyclerController(this)
     }
 
     private fun initBottom() {
