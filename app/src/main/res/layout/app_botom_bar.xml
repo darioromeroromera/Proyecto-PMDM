@@ -27,6 +27,7 @@
         android:layout_height ="wrap_content"
         android:backgroundTint ="@color/white"
         android:src="@drawable/baseline_add_24"
+        android:visibility="invisible"
         app:layout_anchor ="@id/bottom_bar"
         app:maxImageSize ="40dp"
         app:tint="#ADD8E6" />

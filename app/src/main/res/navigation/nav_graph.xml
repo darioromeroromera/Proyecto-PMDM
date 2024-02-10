@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.proyectopmdm.fragments.HomeFragment"
+        android:name="com.example.proyectopmdm.ui.views.fragments.HomeFragment"
         android:label="@string/empty_label"
         tools:layout="@layout/fragment_home"
         >
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/recyclerFragment"
-        android:name="com.example.proyectopmdm.fragments.RecyclerFragment"
+        android:name="com.example.proyectopmdm.ui.views.fragments.RecyclerFragment"
         android:label="@string/empty_label"
         tools:layout="@layout/fragment_recycler" >
         <action
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.proyectopmdm.fragments.DetailFragment"
+        android:name="com.example.proyectopmdm.ui.views.fragments.DetailFragment"
         android:label="@string/empty_label"
         tools:layout="@layout/fragment_detail"
         >
@@ -42,54 +42,42 @@
             android:id="@+id/action_detailsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <argument
-            android:name="nombre"
-            app:argType="string" />
-        <argument
-            android:name="nombreCompleto"
-            app:argType="string" />
-        <argument
-            android:name="telefono"
-            app:argType="string" />
-        <argument
-            android:name="imagen"
-            app:argType="string" />
-        <argument
-            android:name="detalles"
-            app:argType="string" />
+            android:name="pos"
+            app:argType="integer" />
 
     </fragment>
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.proyectopmdm.fragments.SettingsFragment"
+        android:name="com.example.proyectopmdm.ui.views.fragments.SettingsFragment"
         android:label="@string/empty_label"
         tools:layout="@layout/fragment_settings" >
     </fragment>
 
     <fragment
         android:id="@+id/aboutUsFragment"
-        android:name="com.example.proyectopmdm.fragments.AboutUsFragment"
+        android:name="com.example.proyectopmdm.ui.views.fragments.AboutUsFragment"
         android:label="@string/empty_label"
         tools:layout="@layout/fragment_about_us"
         ></fragment>
 
     <fragment
         android:id="@+id/securityFragment"
-        android:name="com.example.proyectopmdm.fragments.SecurityFragment"
+        android:name="com.example.proyectopmdm.ui.views.fragments.SecurityFragment"
         android:label="@string/empty_label"
         tools:layout="@layout/fragment_security"
         ></fragment>
 
     <fragment
         android:id="@+id/anchoredContactsFragment"
-        android:name="com.example.proyectopmdm.fragments.AnchoredContactsFragment"
+        android:name="com.example.proyectopmdm.ui.views.fragments.AnchoredContactsFragment"
         android:label="@string/empty_label"
         tools:layout="@layout/fragment_anchored_contacts"
         ></fragment>
 
     <fragment
         android:id="@+id/blockedContactsFragment"
-        android:name="com.example.proyectopmdm.fragments.BlockedContactsFragment"
+        android:name="com.example.proyectopmdm.ui.views.fragments.BlockedContactsFragment"
         android:label="@string/empty_label"
         tools:layout="@layout/fragment_blocked_contacts"
         ></fragment>

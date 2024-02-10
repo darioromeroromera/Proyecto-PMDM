@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#444"
-    tools:context=".MainActivity">
+    tools:context=".ui.views.MainActivity">
 
     <LinearLayout
 
@@ -49,11 +49,4 @@
             app:defaultNavHost="true"
             />
     </LinearLayout>
-
-    <include
-        android:id="@+id/app_bottom_bar"
-        layout="@layout/app_botom_bar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

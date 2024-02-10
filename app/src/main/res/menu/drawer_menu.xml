@@ -4,17 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     tools:showIn = "navigation_view">
-        <item
-            android:id="@+id/homeFragment"
-            android:icon="@drawable/baseline_home_24"
-            android:title="Home"/>
-        <item
-            android:id="@+id/recyclerFragment"
-            android:icon="@drawable/contact_icon"
-            android:title="Contacts"/>
-        <item
-            android:id="@+id/aboutUsFragment"
-            android:icon="@drawable/baseline_info_24"
-            android:title="About Us"
-                />
+        <group
+            android:id="@+id/top_menu"
+            >
+                <item
+                    android:id="@+id/homeFragment"
+                    android:icon="@drawable/baseline_home_24"
+                    android:title="Home"/>
+                <item
+                    android:id="@+id/recyclerFragment"
+                    android:icon="@drawable/contact_icon"
+                    android:title="Contacts"/>
+                <item
+                    android:id="@+id/aboutUsFragment"
+                    android:icon="@drawable/baseline_info_24"
+                    android:title="About Us"
+                    />
+        </group>
+
+        <group
+            android:id="@+id/bottom_menu"
+            >
+                <item
+                    android:id="@+id/logout"
+                    android:icon="@drawable/baseline_logout_24"
+                    android:title="Log Out"
+                    />
+        </group>
 </menu>

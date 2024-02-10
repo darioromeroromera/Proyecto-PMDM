@@ -1,40 +1,29 @@
 package com.example.proyectopmdm.controller
 
-import android.content.Context
-import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.proyectopmdm.MainActivity
-import com.example.proyectopmdm.R
-import com.example.proyectopmdm.adapter.ContactoAdapter
-import com.example.proyectopmdm.dao.ContactosDao
+import com.example.proyectopmdm.ui.views.MainActivity
+import com.example.proyectopmdm.ui.adapter.ContactoAdapter
 import com.example.proyectopmdm.databinding.FragmentRecyclerBinding
-import com.example.proyectopmdm.dialogues.CreateDialogue
-import com.example.proyectopmdm.dialogues.DeleteDialogue
-import com.example.proyectopmdm.dialogues.EditDialogue
-import com.example.proyectopmdm.fragments.RecyclerFragmentDirections
-import com.example.proyectopmdm.models.Contacto
+import com.example.proyectopmdm.ui.views.dialogues.CreateDialogue
+import com.example.proyectopmdm.ui.views.dialogues.DeleteDialogue
+import com.example.proyectopmdm.ui.views.dialogues.EditDialogue
+import com.example.proyectopmdm.data.models.Contacto
+import com.example.proyectopmdm.ui.views.fragments.RecyclerFragmentDirections
 
 class RecyclerController(
     val context: FragmentActivity){
-    var listaContactos: MutableList<Contacto>
-    lateinit var adapter : ContactoAdapter
-    var mainActivity: MainActivity
+    /*lateinit var adapter : ContactoAdapter
     lateinit var layoutManager: LinearLayoutManager
     lateinit var fragmentBinding: FragmentRecyclerBinding
-
-    init {
-        mainActivity = context as MainActivity
-        listaContactos = mainActivity.listaContactos
-    }
 
      fun initLayoutManager() {
         layoutManager = fragmentBinding.rvContactos.layoutManager as LinearLayoutManager
     }
 
     fun setAdapter() {
-        adapter = ContactoAdapter(listaContactos, {
+        adapter = ContactoAdapter({
                 pos -> delContact(pos)
         },
             {
@@ -108,6 +97,6 @@ class RecyclerController(
         adapter.notifyItemRemoved(pos)
         adapter.notifyItemChanged(pos)
         adapter.notifyDataSetChanged()
-    }
+    }*/
 
 }

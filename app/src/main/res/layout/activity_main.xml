@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#444"
     android:id="@+id/main_drawer"
-    tools:context=".MainActivity">
+    tools:context=".ui.views.MainActivity">
 
     <include
         android:id="@+id/app_bar_container_view"
