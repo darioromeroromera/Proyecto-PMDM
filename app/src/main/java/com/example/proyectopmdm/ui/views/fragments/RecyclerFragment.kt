@@ -15,10 +15,13 @@ import com.example.proyectopmdm.databinding.FragmentRecyclerBinding
 import com.example.proyectopmdm.ui.adapter.ContactoAdapter
 import com.example.proyectopmdm.ui.viewmodels.RecyclerViewModel
 import com.example.proyectopmdm.ui.views.dialogues.CreateDialogue
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 class RecyclerFragment : Fragment() {
     lateinit var binding: FragmentRecyclerBinding
     private lateinit var mainActivity : MainActivity
+    val adapter : ContactoAdapter = ContactoAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,8 +36,6 @@ class RecyclerFragment : Fragment() {
         val layoutManager = LinearLayoutManager(requireActivity())
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvContactos.layoutManager = layoutManager
-
-        val adapter = ContactoAdapter()
 
         binding.rvContactos.adapter = adapter
 

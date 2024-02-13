@@ -1,6 +1,5 @@
 package com.example.proyectopmdm.ui.views
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,12 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
-import android.window.OnBackInvokedDispatcher
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
 import androidx.activity.viewModels
-import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -23,13 +17,14 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.proyectopmdm.R
-import com.example.proyectopmdm.controller.RecyclerController
 import com.example.proyectopmdm.data.datasource.Repository
-import com.example.proyectopmdm.data.models.ContactsDao
 import com.example.proyectopmdm.databinding.ActivityMainBinding
-import com.example.proyectopmdm.data.models.Contacto
 import com.example.proyectopmdm.data.models.MutableRepository
 import com.example.proyectopmdm.ui.viewmodels.RecyclerViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
+
+@AndroidEntryPoint
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
@@ -38,7 +33,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var user : String
     private lateinit var email : String
-    lateinit var recyclerController: RecyclerController
     lateinit var shared: SharedPreferences
     val contactsViewModel : RecyclerViewModel by viewModels()
 
@@ -53,15 +47,10 @@ class MainActivity : AppCompatActivity() {
         initNavElements()
         initDrawer()
         initEvent()
-        //initController()
     }
 
     private fun getSharedPreferences() {
         shared = getSharedPreferences("shared_pref_file", Context.MODE_PRIVATE)
-    }
-
-    private fun initController() {
-        recyclerController = RecyclerController(this)
     }
 
 

@@ -9,13 +9,16 @@ import com.example.proyectopmdm.domain.usecases.AddContactUseCase
 import com.example.proyectopmdm.domain.usecases.GetContactsUseCase
 import com.example.proyectopmdm.domain.usecases.RemoveContactUseCase
 import com.example.proyectopmdm.domain.usecases.UpdateContactUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-
-class RecyclerViewModel : ViewModel() {
-    private val getContactsUseCase = GetContactsUseCase()
-    private val addContactUseCase = AddContactUseCase()
-    private val removeContactUseCase = RemoveContactUseCase()
-    private val updateContactUseCase = UpdateContactUseCase()
+import javax.inject.Inject
+@HiltViewModel
+class RecyclerViewModel @Inject constructor(
+    private val getContactsUseCase : GetContactsUseCase,
+    private val addContactUseCase : AddContactUseCase,
+    private val removeContactUseCase : RemoveContactUseCase,
+    private val updateContactUseCase : UpdateContactUseCase
+) : ViewModel() {
     var contactsLiveData = MutableLiveData<List<Contacto>>()
 
     fun listContacts() {
