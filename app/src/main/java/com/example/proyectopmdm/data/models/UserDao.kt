@@ -12,5 +12,5 @@ interface UserDao {
     suspend fun getUser(name: String, password: String) : UserEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveUser(name: String, password: String, email: String)
+    suspend fun saveUser(vararg user: UserEntity)
 }

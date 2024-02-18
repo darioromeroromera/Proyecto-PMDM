@@ -11,6 +11,9 @@ import com.example.proyectopmdm.databinding.ActivityLoginBinding
 import com.example.proyectopmdm.data.models.User
 import com.example.proyectopmdm.data.datasource.Users
 import com.example.proyectopmdm.ui.views.dialogues.RegisterDialogue
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding : ActivityLoginBinding
