@@ -11,6 +11,9 @@ interface UserDao {
     @Query("SELECT * FROM users WHERE name = :name AND password = :password")
     suspend fun getUser(name: String, password: String) : UserEntity
 
+    @Query("SELECT * FROM users WHERE name = :name")
+    suspend fun getUserByUsername(name: String) : UserEntity
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveUser(vararg user: UserEntity)
 }

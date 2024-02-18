@@ -11,10 +11,11 @@ import com.example.proyectopmdm.R
 import com.example.proyectopmdm.data.models.Contacto
 import com.example.proyectopmdm.data.models.User
 import com.example.proyectopmdm.databinding.RegisterDialogLayoutBinding
+import com.example.proyectopmdm.domain.usecases.models.UserModel
 import java.lang.IllegalStateException
 
 class RegisterDialogue(
-    var okOnCreateUser: (User) -> Unit
+    var okOnCreateUser: (UserModel) -> Unit
 ) : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let { activity ->
@@ -44,20 +45,20 @@ class RegisterDialogue(
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
-    private fun createUser(view: View) : User {
+    private fun createUser(view: View) : UserModel {
         val binding = RegisterDialogLayoutBinding.bind(view)
-        return User(
+        return UserModel(
             binding.etUsername.text.toString(),
             binding.etPassword.text.toString(),
             binding.etEmail.text.toString()
         )
     }
 
-    private fun isUserFilled(user: User) : Boolean {
+    private fun isUserFilled(user: UserModel) : Boolean {
         return (! (user.name.isNullOrBlank() || user.password.isNullOrBlank() || user.email.isNullOrBlank()))
     }
 
-    private fun isUserEmailCorrect(user: User) : Boolean {
+    private fun isUserEmailCorrect(user: UserModel) : Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(user.email).matches()
     }
 }

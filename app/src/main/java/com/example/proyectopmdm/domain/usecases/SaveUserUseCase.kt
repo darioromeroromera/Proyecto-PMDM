@@ -8,7 +8,7 @@ import javax.inject.Inject
 class SaveUserUseCase @Inject constructor(
     private val dao: UserDao
 ){
-    suspend operator fun invoke(name: String, password: String, email: String) {
-        val userEntity = dao.saveUser(UserEntity(name = name, password = password, email = email))
+    suspend operator fun invoke(userModel: UserModel) {
+        val userEntity = dao.saveUser(UserEntity(name = userModel.name, password = userModel.password, email = userModel.email))
     }
 }
