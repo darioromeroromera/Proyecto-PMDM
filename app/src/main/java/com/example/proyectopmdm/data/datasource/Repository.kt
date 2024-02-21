@@ -1,6 +1,6 @@
 package com.example.proyectopmdm.data.datasource
 
-import com.example.proyectopmdm.data.models.Contacto
+import com.example.proyectopmdm.data.models.mem.Contacto
 
 object Repository {
     val listaContactos: List<Contacto> = listOf(

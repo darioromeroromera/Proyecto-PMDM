@@ -1,7 +1,7 @@
-package com.example.proyectopmdm.domain.usecases
+package com.example.proyectopmdm.domain.usecases.contacts
 
-import com.example.proyectopmdm.data.models.Contacto
-import com.example.proyectopmdm.data.models.ContactsDao
+import com.example.proyectopmdm.data.models.mem.Contacto
+import com.example.proyectopmdm.data.models.mem.ContactsDao
 import javax.inject.Inject
 
 class UpdateContactUseCase @Inject constructor() {

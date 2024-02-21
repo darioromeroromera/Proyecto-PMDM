@@ -1,4 +1,4 @@
-package com.example.proyectopmdm.domain.usecases.models
+package com.example.proyectopmdm.data.models.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

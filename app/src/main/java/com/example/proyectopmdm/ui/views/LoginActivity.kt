@@ -10,8 +10,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.proyectopmdm.databinding.ActivityLoginBinding
-import com.example.proyectopmdm.data.models.User
-import com.example.proyectopmdm.data.datasource.Users
 import com.example.proyectopmdm.domain.usecases.models.UserModel
 import com.example.proyectopmdm.ui.viewmodels.UserViewModel
 import com.example.proyectopmdm.ui.views.dialogues.RegisterDialogue
@@ -24,20 +22,22 @@ class LoginActivity : AppCompatActivity() {
     lateinit var binding : ActivityLoginBinding
     lateinit var shared : SharedPreferences
     val userViewModel: UserViewModel by viewModels()
+    private var user: UserModel? = null
+    private val activityContext = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         loadSharedPreferences()
+        userViewModel.userLiveData.observe(this, {
+            newUser ->
+                user = newUser
+        })
         if (isLoggedIn()) {
-            val user = UserModel(shared.getString("username", "defValue")!!, "", "")
-            if (findUserByName(user) != null) {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            } else
-                initLogin()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         } else {
             initLogin()
         }
@@ -60,32 +60,44 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initEvent() {
         binding.btnLogin.setOnClickListener { view ->
-            var user = findUser(UserModel(getUserName(), getPass(), ""))
+            if (getUserName().trim().equals("") || getPass().trim().equals(""))
+                Toast.makeText(this, "Los campos deben estar rellenos", Toast.LENGTH_LONG).show()
+            else {
+                val fieldsUser: UserModel = UserModel(getUserName(), getPass(), "")
+                lifecycleScope.launch {
+                    findUser(fieldsUser)
+                    if (user != null) {
+                        with (shared.edit()) {
+                            putString("username",  user!!.name)
+                            putString("email", user!!.email)
+                            putBoolean("isLoggedIn", true)
+                            apply()
+                        }
+                        val intent = Intent(activityContext, MainActivity::class.java)
 
-            if (user != null) {
-                with (shared.edit()) {
-                    putString("username",  user.name)
-                    putString("email", user.email)
-                    putBoolean("isLoggedIn", true)
-                    apply()
+                        startActivity(intent)
+                        finish()
+                    } else
+                        Toast.makeText(activityContext, "Usuario y/o contraseña incorrectos", Toast.LENGTH_LONG).show()
                 }
-                val intent = Intent(this, MainActivity::class.java)
 
-                startActivity(intent)
-                finish()
-            } else
-                Toast.makeText(this, "Usuario y/o contraseña incorrectos", Toast.LENGTH_LONG).show()
+
+            }
+
         }
         binding.btnRegister.setOnClickListener { view ->
             val dialog = RegisterDialogue(
                 {
-                    user ->
-                    if (findUserByName(user) == null)
-                        Toast.makeText(this, "Ese usuario ya está registrado",Toast.LENGTH_LONG).show()
-                    else {
-                        saveUser(user)
-                        Toast.makeText(this, "Usuario añadido", Toast.LENGTH_LONG).show()
-                    }
+                    fieldsUser ->
+                        lifecycleScope.launch {
+                            findUserByName(fieldsUser)
+                            if (user != null)
+                                Toast.makeText(activityContext, "Ese usuario ya está registrado",Toast.LENGTH_LONG).show()
+                            else {
+                                saveUser(fieldsUser)
+                                Toast.makeText(activityContext, "Usuario añadido", Toast.LENGTH_LONG).show()
+                            }
+                        }
                 })
             dialog.show(this.supportFragmentManager, "Añadir")
         }
@@ -99,15 +111,15 @@ class LoginActivity : AppCompatActivity() {
         return binding.etPassword.text.toString().trim()
     }
 
-    private fun findUserByName(user: UserModel) : UserModel? {
-        return userViewModel.getUserByName(user!!.name)
+    suspend private fun findUserByName(user: UserModel) { // Para el registro
+        userViewModel.getUserByName(user!!.name)
     }
 
-    private fun findUser(user: UserModel) : UserModel?{
-        return userViewModel.getUser(user.name, user.password)
+    suspend private fun findUser(user: UserModel) { // Para el login
+        userViewModel.getUser(user.name, user.password)
     }
 
-    private fun saveUser(user: UserModel) {
+    suspend private fun saveUser(user: UserModel) {
         userViewModel.saveUser(user)
     }
 }

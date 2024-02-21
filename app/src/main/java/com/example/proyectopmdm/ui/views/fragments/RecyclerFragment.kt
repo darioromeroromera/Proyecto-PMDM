@@ -5,18 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.proyectopmdm.data.models.MutableRepository
+import com.example.proyectopmdm.data.models.mem.MutableRepository
 import com.example.proyectopmdm.ui.views.MainActivity
 import com.example.proyectopmdm.databinding.FragmentRecyclerBinding
 import com.example.proyectopmdm.ui.adapter.ContactoAdapter
-import com.example.proyectopmdm.ui.viewmodels.RecyclerViewModel
 import com.example.proyectopmdm.ui.views.dialogues.CreateDialogue
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 class RecyclerFragment : Fragment() {
     lateinit var binding: FragmentRecyclerBinding

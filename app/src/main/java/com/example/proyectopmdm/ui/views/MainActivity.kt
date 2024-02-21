@@ -19,10 +19,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.proyectopmdm.R
 import com.example.proyectopmdm.data.datasource.Repository
 import com.example.proyectopmdm.databinding.ActivityMainBinding
-import com.example.proyectopmdm.data.models.MutableRepository
+import com.example.proyectopmdm.data.models.mem.MutableRepository
 import com.example.proyectopmdm.ui.viewmodels.RecyclerViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
 
 @AndroidEntryPoint
 

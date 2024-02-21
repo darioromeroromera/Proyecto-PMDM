@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.proyectopmdm.R
 import com.example.proyectopmdm.databinding.DialogLayoutBinding
-import com.example.proyectopmdm.data.models.Contacto
+import com.example.proyectopmdm.data.models.mem.Contacto
 import java.lang.IllegalStateException
 
 // Programa de Darío

@@ -8,8 +8,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.proyectopmdm.R
-import com.example.proyectopmdm.data.models.Contacto
-import com.example.proyectopmdm.data.models.User
 import com.example.proyectopmdm.databinding.RegisterDialogLayoutBinding
 import com.example.proyectopmdm.domain.usecases.models.UserModel
 import java.lang.IllegalStateException

@@ -1,22 +1,14 @@
 package com.example.proyectopmdm.ui.adapter
 
 import android.view.View
-import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.proyectopmdm.R
 import com.example.proyectopmdm.databinding.CardviewLayoutBinding
-import com.example.proyectopmdm.data.models.Contacto
-import com.example.proyectopmdm.data.models.MutableRepository
+import com.example.proyectopmdm.data.models.mem.Contacto
+import com.example.proyectopmdm.data.models.mem.MutableRepository
 import com.example.proyectopmdm.ui.views.MainActivity
-import com.example.proyectopmdm.ui.views.dialogues.CreateDialogue
 import com.example.proyectopmdm.ui.views.dialogues.DeleteDialogue
 import com.example.proyectopmdm.ui.views.dialogues.EditDialogue
-import com.example.proyectopmdm.ui.views.fragments.RecyclerFragment
 import com.example.proyectopmdm.ui.views.fragments.RecyclerFragmentDirections
 
 class ViewHContacto(view: View) : RecyclerView.ViewHolder(view) {

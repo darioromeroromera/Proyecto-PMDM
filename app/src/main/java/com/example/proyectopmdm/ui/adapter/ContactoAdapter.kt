@@ -2,13 +2,9 @@ package com.example.proyectopmdm.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectopmdm.R
-import com.example.proyectopmdm.data.models.Contacto
-import com.example.proyectopmdm.data.models.MutableRepository
-import javax.inject.Inject
+import com.example.proyectopmdm.data.models.mem.MutableRepository
 
 class ContactoAdapter: RecyclerView.Adapter<ViewHContacto>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHContacto {

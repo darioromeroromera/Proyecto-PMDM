@@ -3,12 +3,11 @@ package com.example.proyectopmdm.ui.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
-import com.example.proyectopmdm.data.models.Contacto
-import com.example.proyectopmdm.domain.usecases.AddContactUseCase
-import com.example.proyectopmdm.domain.usecases.GetContactsUseCase
-import com.example.proyectopmdm.domain.usecases.RemoveContactUseCase
-import com.example.proyectopmdm.domain.usecases.UpdateContactUseCase
+import com.example.proyectopmdm.data.models.mem.Contacto
+import com.example.proyectopmdm.domain.usecases.contacts.AddContactUseCase
+import com.example.proyectopmdm.domain.usecases.contacts.GetContactsUseCase
+import com.example.proyectopmdm.domain.usecases.contacts.RemoveContactUseCase
+import com.example.proyectopmdm.domain.usecases.contacts.UpdateContactUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package com.example.proyectopmdm.data.models
+package com.example.proyectopmdm.data.models.mem
 
 class MutableRepository {
     companion object {

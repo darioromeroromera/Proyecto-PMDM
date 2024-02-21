@@ -1,6 +1,6 @@
-package com.example.proyectopmdm.domain.usecases
+package com.example.proyectopmdm.domain.usecases.mapping
 
-import com.example.proyectopmdm.domain.usecases.models.UserEntity
+import com.example.proyectopmdm.data.models.db.UserEntity
 import com.example.proyectopmdm.domain.usecases.models.UserModel
 
 
