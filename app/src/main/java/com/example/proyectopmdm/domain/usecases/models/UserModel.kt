@@ -5,6 +5,27 @@ import android.icu.text.PluralRules
 class UserModel (
     val name: String,
     val password: String,
-    val email: String
+    val email: String,
+    val token: String
 ){
+    constructor(
+        name: String,
+        password: String,
+        email: String,
+    ) : this(
+        name,
+        password,
+        email,
+        token = ""
+    )
+
+    constructor(
+        name: String,
+        password: String,
+    ) : this(
+        name,
+        password,
+        email = "",
+        token = ""
+    )
 }

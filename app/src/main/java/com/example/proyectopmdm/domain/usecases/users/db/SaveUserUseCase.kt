@@ -1,4 +1,4 @@
-package com.example.proyectopmdm.domain.usecases.users
+package com.example.proyectopmdm.domain.usecases.users.db
 
 import com.example.proyectopmdm.data.models.db.UserDao
 import com.example.proyectopmdm.data.models.db.UserEntity

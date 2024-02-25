@@ -63,13 +63,14 @@ class LoginActivity : AppCompatActivity() {
             if (getUserName().trim().equals("") || getPass().trim().equals(""))
                 Toast.makeText(this, "Los campos deben estar rellenos", Toast.LENGTH_LONG).show()
             else {
-                val fieldsUser: UserModel = UserModel(getUserName(), getPass(), "")
+                val fieldsUser: UserModel = UserModel(getUserName(), getPass())
                 lifecycleScope.launch {
                     findUser(fieldsUser)
                     if (user != null) {
                         with (shared.edit()) {
                             putString("username",  user!!.name)
                             putString("email", user!!.email)
+                            putString("token", user!!.token)
                             putBoolean("isLoggedIn", true)
                             apply()
                         }
@@ -116,7 +117,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     suspend private fun findUser(user: UserModel) { // Para el login
-        userViewModel.getUser(user.name, user.password)
+        userViewModel.login(user.name, user.password)
     }
 
     suspend private fun saveUser(user: UserModel) {
