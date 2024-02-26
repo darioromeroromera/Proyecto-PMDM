@@ -6,6 +6,7 @@ import com.example.proyectopmdm.domain.usecases.users.db.GetUserNameOnlyUseCase
 import com.example.proyectopmdm.domain.usecases.users.db.GetUserUseCase
 import com.example.proyectopmdm.domain.usecases.users.db.SaveUserUseCase
 import com.example.proyectopmdm.domain.usecases.models.UserModel
+import com.example.proyectopmdm.domain.usecases.users.network.InsertUseCase
 import com.example.proyectopmdm.domain.usecases.users.network.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -13,9 +14,10 @@ import javax.inject.Inject
 @HiltViewModel
 class UserViewModel @Inject constructor(
     //private val getUserUseCase: GetUserUseCase,
-    private val saveUserUseCase: SaveUserUseCase,
-    private val getUserNameOnlyUseCase: GetUserNameOnlyUseCase,
-    private val loginUseCase: LoginUseCase
+    /*private val saveUserUseCase: SaveUserUseCase,
+    private val getUserNameOnlyUseCase: GetUserNameOnlyUseCase,*/
+    private val loginUseCase: LoginUseCase,
+    private val insertUseCase: InsertUseCase
 ) : ViewModel(){
     val userLiveData = MutableLiveData<UserModel?>()
 
@@ -29,12 +31,7 @@ class UserViewModel @Inject constructor(
         userLiveData.value = user
     }
 
-    suspend fun getUserByName(name: String) {
-        val user = getUserNameOnlyUseCase(name)
-        userLiveData.value = user
-    }
-
-    suspend fun saveUser(userModel: UserModel) {
-        saveUserUseCase(userModel)
+    suspend fun saveUser(userModel: UserModel) : String {
+        return insertUseCase(userModel)
     }
 }

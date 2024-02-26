@@ -1,9 +1,11 @@
 package com.example.proyectopmdm.data.services
 
+import android.util.Log
 import com.example.proyectopmdm.data.models.network.requests.LoginRequest
 import com.example.proyectopmdm.data.models.network.requests.RegisterRequest
 import com.example.proyectopmdm.data.models.network.responses.LoginResponse
 import com.example.proyectopmdm.data.models.network.responses.RegisterResponse
+import org.json.JSONObject
 import retrofit2.Response
 import java.lang.RuntimeException
 import javax.inject.Inject
@@ -20,7 +22,10 @@ class ContactsNetService @Inject constructor(val apiService: ContactsNetServiceI
                     return Result.success(it)
                 } ?: return Result.failure(RuntimeException("Respuesta nula sin datos"))
             } else {
-                return Result.failure(RuntimeException("Error en la llamada y sin respuesta"))
+                response.errorBody()?.let {
+                    val jsonObj = JSONObject(it.charStream().readText())
+                    return Result.failure(RuntimeException(jsonObj.getString("details")))
+                } ?: return Result.failure(RuntimeException("Respuesta nula sin datos"))
             }
         } catch(e: Exception){
             return Result.failure(e)
@@ -30,18 +35,19 @@ class ContactsNetService @Inject constructor(val apiService: ContactsNetServiceI
 
     suspend fun register(registerRequest: RegisterRequest): Result<RegisterResponse> {
         try {
-            val response  = apiService.register(registerRequest)
-            return if (response.isSuccessful){
+            val response: Response<RegisterResponse> = apiService.register(registerRequest)
+            if (response.isSuccessful) {
                 response.body()?.let {
-                    Result.success(it)
-                }?:Result.failure(RuntimeException("Respuesta nula"))
+                    return Result.success(it)
+                } ?: return Result.failure(RuntimeException("Respuesta nula sin datos"))
             } else {
-                Result.failure(RuntimeException("Error en la llamada y sin respuesta"))
+                response.errorBody()?.let {
+                    val jsonObj = JSONObject(it.charStream().readText())
+                    return Result.failure(RuntimeException(jsonObj.getString("details")))
+                } ?: return Result.failure(RuntimeException("Respuesta nula sin datos"))
             }
-        }
-        catch (e: Exception) {
+        } catch (e: Exception) {
             return Result.failure(e)
         }
-
     }
 }

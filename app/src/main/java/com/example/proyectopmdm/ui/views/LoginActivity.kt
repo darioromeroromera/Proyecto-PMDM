@@ -60,13 +60,11 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initEvent() {
         binding.btnLogin.setOnClickListener { view ->
-            if (getUserName().trim().equals("") || getPass().trim().equals(""))
-                Toast.makeText(this, "Los campos deben estar rellenos", Toast.LENGTH_LONG).show()
-            else {
+
                 val fieldsUser: UserModel = UserModel(getUserName(), getPass())
                 lifecycleScope.launch {
                     findUser(fieldsUser)
-                    if (user != null) {
+                    if (user!!.details.equals("")) {
                         with (shared.edit()) {
                             putString("username",  user!!.name)
                             putString("email", user!!.email)
@@ -79,11 +77,9 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     } else
-                        Toast.makeText(activityContext, "Usuario y/o contraseña incorrectos", Toast.LENGTH_LONG).show()
+                        Toast.makeText(activityContext, user!!.details, Toast.LENGTH_LONG).show()
                 }
 
-
-            }
 
         }
         binding.btnRegister.setOnClickListener { view ->
@@ -91,13 +87,9 @@ class LoginActivity : AppCompatActivity() {
                 {
                     fieldsUser ->
                         lifecycleScope.launch {
-                            findUserByName(fieldsUser)
-                            if (user != null)
-                                Toast.makeText(activityContext, "Ese usuario ya está registrado",Toast.LENGTH_LONG).show()
-                            else {
-                                saveUser(fieldsUser)
-                                Toast.makeText(activityContext, "Usuario añadido", Toast.LENGTH_LONG).show()
-                            }
+
+                            val saveState = saveUser(fieldsUser)
+                            Toast.makeText(activityContext, saveState, Toast.LENGTH_SHORT).show()
                         }
                 })
             dialog.show(this.supportFragmentManager, "Añadir")
@@ -111,16 +103,11 @@ class LoginActivity : AppCompatActivity() {
     private fun getPass() : String {
         return binding.etPassword.text.toString().trim()
     }
-
-    suspend private fun findUserByName(user: UserModel) { // Para el registro
-        userViewModel.getUserByName(user!!.name)
-    }
-
     suspend private fun findUser(user: UserModel) { // Para el login
         userViewModel.login(user.name, user.password)
     }
 
-    suspend private fun saveUser(user: UserModel) {
-        userViewModel.saveUser(user)
+    suspend private fun saveUser(user: UserModel) : String {
+        return userViewModel.saveUser(user)
     }
 }
