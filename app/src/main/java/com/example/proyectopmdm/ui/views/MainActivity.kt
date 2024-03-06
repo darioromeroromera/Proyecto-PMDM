@@ -20,6 +20,7 @@ import com.example.proyectopmdm.R
 import com.example.proyectopmdm.data.datasource.Repository
 import com.example.proyectopmdm.databinding.ActivityMainBinding
 import com.example.proyectopmdm.data.models.mem.MutableRepository
+import com.example.proyectopmdm.data.models.network.MutableContactRepository
 import com.example.proyectopmdm.ui.viewmodels.RecyclerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var user : String
     private lateinit var email : String
+    private lateinit var token : String
     lateinit var shared: SharedPreferences
     val contactsViewModel : RecyclerViewModel by viewModels()
 
@@ -56,6 +58,7 @@ class MainActivity : AppCompatActivity() {
     private fun setUserData() {
         user = shared.getString("username", "defValue")!!
         email = shared.getString("email", "defValue")!!
+        token = shared.getString("token", "defValue")!!
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -91,7 +94,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initList() {
-        MutableRepository.contacts = Repository.listaContactos.toMutableList()
+        contactsViewModel.listContacts(token)
     }
 
     private fun initNavElements() {

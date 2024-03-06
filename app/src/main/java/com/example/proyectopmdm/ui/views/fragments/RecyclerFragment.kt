@@ -49,7 +49,7 @@ class RecyclerFragment : Fragment() {
         val dialog = CreateDialogue(
             {
                 contact ->
-                    mainActivity.contactsViewModel.addContact(contact)
+                    //mainActivity.contactsViewModel.addContact(contact)
                     binding.rvContactos.layoutManager!!.scrollToPosition(MutableRepository.contacts.lastIndex)
             })
         dialog.show(mainActivity.supportFragmentManager, "Añadir")

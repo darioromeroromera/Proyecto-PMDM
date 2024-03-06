@@ -11,10 +11,11 @@ import com.example.proyectopmdm.R
 import com.example.proyectopmdm.databinding.DialogLayoutBinding
 import com.example.proyectopmdm.data.models.mem.Contacto
 import com.example.proyectopmdm.data.datasource.Fields
+import com.example.proyectopmdm.domain.usecases.models.ContactModel
 
 class EditDialogue(
     val pos: Int,
-    val contacto: Contacto,
+    val contacto: ContactModel,
     val okOnEditContact: (Contacto, Int) -> Unit
 ) : DialogFragment() {
 

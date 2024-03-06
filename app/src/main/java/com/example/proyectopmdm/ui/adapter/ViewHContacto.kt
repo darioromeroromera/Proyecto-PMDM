@@ -4,8 +4,8 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.proyectopmdm.databinding.CardviewLayoutBinding
-import com.example.proyectopmdm.data.models.mem.Contacto
 import com.example.proyectopmdm.data.models.mem.MutableRepository
+import com.example.proyectopmdm.domain.usecases.models.ContactModel
 import com.example.proyectopmdm.ui.views.MainActivity
 import com.example.proyectopmdm.ui.views.dialogues.DeleteDialogue
 import com.example.proyectopmdm.ui.views.dialogues.EditDialogue
@@ -20,7 +20,7 @@ class ViewHContacto(view: View) : RecyclerView.ViewHolder(view) {
         mainActivity = view.context as MainActivity
     }
 
-    fun renderize(contacto: Contacto) {
+    fun renderize(contacto: ContactModel) {
         binding.tvNombreContacto.text = contacto.nombre
         binding.tvNombreCompleto.text = contacto.nombreCompleto
         binding.tvTelefono.text = contacto.telefono
@@ -28,7 +28,7 @@ class ViewHContacto(view: View) : RecyclerView.ViewHolder(view) {
         setOnClickListener(adapterPosition, contacto)
     }
 
-    private fun setOnClickListener(position: Int, contacto: Contacto) {
+    private fun setOnClickListener(position: Int, contacto: ContactModel) {
         binding.btnDelete.setOnClickListener { view ->
             delContact(position)
 
@@ -49,19 +49,17 @@ class ViewHContacto(view: View) : RecyclerView.ViewHolder(view) {
             pos,
             MutableRepository.contacts.get(pos).nombreCompleto,
             {
-                    pos -> mainActivity.contactsViewModel.removeContact(pos)
+                    pos -> //mainActivity.contactsViewModel.removeContact(pos)
             })
         dialog.show(mainActivity.supportFragmentManager, "Borrar")
     }
 
-    private fun editContacto(pos: Int, contacto: Contacto) {
+    private fun editContacto(pos: Int, contacto: ContactModel) {
         val dialog = EditDialogue(
             pos,
-            contacto,
-            {
-                    contact, pos -> mainActivity.contactsViewModel.updateContact(pos, contact)
-            }
-        )
+            contacto
+        ) { contact, pos -> //mainActivity.contactsViewModel.updateContact(pos, contact)
+        }
         dialog.show(mainActivity.supportFragmentManager, "Editar")
     }
 }

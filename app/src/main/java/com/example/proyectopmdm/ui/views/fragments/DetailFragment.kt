@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.proyectopmdm.data.models.mem.MutableRepository
+import com.example.proyectopmdm.data.models.network.MutableContactRepository
 import com.example.proyectopmdm.databinding.FragmentDetailBinding
 
 class DetailFragment() : Fragment() {
@@ -23,7 +24,7 @@ class DetailFragment() : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val contact = MutableRepository.contacts.get(arg.pos)
+        val contact = MutableContactRepository.contacts.get(arg.pos)
         Glide.with(this).load(contact.imagen).centerCrop().into(binding.ivDetContacto)
         binding.ivDetContacto.clipToOutline = true
         binding.tvDetNombre.text = contact.nombre

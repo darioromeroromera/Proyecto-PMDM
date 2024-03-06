@@ -7,8 +7,10 @@ class UserModel (
     val password: String,
     val email: String,
     val token: String,
-    val details: String
+    val details: String,
+    val imagen: String
 ){
+    // Constructor para detalles
     constructor(
         details: String
     ) : this(
@@ -16,8 +18,28 @@ class UserModel (
         password = "",
         email = "",
         token = "",
-        details
+        details,
+        imagen = ""
     )
+
+    // Constructor para usuario sin imagen
+
+    constructor(
+        name: String,
+        password: String,
+        email: String,
+        token: String,
+        details: String
+    ) : this(
+        name,
+        password,
+        email,
+        token,
+        details,
+        imagen = ""
+    )
+
+    // Constructor para registro
 
     constructor(
         name: String,
@@ -28,8 +50,11 @@ class UserModel (
         password,
         email,
         token = "",
-        details = ""
+        details = "",
+        imagen = ""
     )
+
+    // Constructor para login
 
     constructor(
         name: String,
@@ -39,6 +64,7 @@ class UserModel (
         password,
         email = "",
         token = "",
-        details = ""
+        details = "",
+         imagen = ""
     )
 }

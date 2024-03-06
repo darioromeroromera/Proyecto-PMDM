@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectopmdm.R
 import com.example.proyectopmdm.data.models.mem.MutableRepository
+import com.example.proyectopmdm.data.models.network.MutableContactRepository
 
 class ContactoAdapter: RecyclerView.Adapter<ViewHContacto>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHContacto {
@@ -14,10 +15,10 @@ class ContactoAdapter: RecyclerView.Adapter<ViewHContacto>() {
     }
 
     override fun onBindViewHolder(holder: ViewHContacto, position: Int) {
-        holder.renderize(MutableRepository.contacts.get(position))
+        holder.renderize(MutableContactRepository.contacts.get(position))
     }
 
     override fun getItemCount(): Int {
-        return MutableRepository.contacts.size
+        return MutableContactRepository.contacts.size
     }
 }
