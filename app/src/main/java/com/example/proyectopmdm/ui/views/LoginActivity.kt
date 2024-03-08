@@ -69,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
                             putString("username",  user!!.name)
                             putString("email", user!!.email)
                             putString("token", user!!.token)
+                            putString("imagen", user!!.imagen)
                             putBoolean("isLoggedIn", true)
                             apply()
                         }

@@ -10,6 +10,7 @@ import com.example.proyectopmdm.domain.usecases.contacts.AddContactUseCase
 import com.example.proyectopmdm.domain.usecases.contacts.GetContactsUseCase
 import com.example.proyectopmdm.domain.usecases.contacts.RemoveContactUseCase
 import com.example.proyectopmdm.domain.usecases.contacts.UpdateContactUseCase
+import com.example.proyectopmdm.domain.usecases.models.ContactModel
 import com.example.proyectopmdm.domain.usecases.models.ContactsListModel
 import com.example.proyectopmdm.domain.usecases.users.network.GetContactsNetUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,16 +25,17 @@ class RecyclerViewModel @Inject constructor(
     private val updateContactUseCase : UpdateContactUseCase
 ) : ViewModel() {
     //var contactsLiveData = MutableLiveData<List<Contacto>>()
-    var contactsLiveData = MutableLiveData<ContactsListModel>()
+    var contactsLiveData = MutableLiveData<MutableList<ContactModel>>()
+
+    var errorLiveData = MutableLiveData<String>("")
 
     fun listContacts(token: String) {
         viewModelScope.launch {
-            val contacts = getContactsNetUseCase(token)
-            contactsLiveData.value = contacts
-            MutableContactRepository.contacts = contacts.contactos
-            contacts.contactos.forEach {
-                Log.d("AAA", it.nombreCompleto)
-            }
+            val contactList = getContactsNetUseCase(token)
+            contactsLiveData.value = contactList.contactos
+            MutableContactRepository.contacts = contactList.contactos
+
+            errorLiveData.value = contactList.details
         }
     }
 /*

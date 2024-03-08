@@ -1,9 +1,11 @@
 package com.example.proyectopmdm.ui.views.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyectopmdm.data.models.mem.MutableRepository
@@ -37,6 +39,14 @@ class RecyclerFragment : Fragment() {
             requireActivity(), { contacts ->
                 binding.rvContactos.adapter = adapter
                 adapter.notifyDataSetChanged()
+            }
+        )
+
+        mainActivity.contactsViewModel.errorLiveData.observe(
+            requireActivity(), { details ->
+                if (!details.equals("")) {
+                    Toast.makeText(mainActivity as Context, details, Toast.LENGTH_SHORT).show()
+                }
             }
         )
 

@@ -45,7 +45,7 @@
             android:textColor="@color/black"
             android:hint="usuario"
             android:textColorHint="#999"
-            android:maxLength="12"/>
+            android:maxLength="25"/>
 
         <EditText
             android:id="@+id/et_password"

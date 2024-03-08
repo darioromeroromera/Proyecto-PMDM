@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -16,6 +17,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
 import com.example.proyectopmdm.R
 import com.example.proyectopmdm.data.datasource.Repository
 import com.example.proyectopmdm.databinding.ActivityMainBinding
@@ -34,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var user : String
     private lateinit var email : String
     private lateinit var token : String
+    private lateinit var imagen : String
     lateinit var shared: SharedPreferences
     val contactsViewModel : RecyclerViewModel by viewModels()
 
@@ -59,6 +62,9 @@ class MainActivity : AppCompatActivity() {
         user = shared.getString("username", "defValue")!!
         email = shared.getString("email", "defValue")!!
         token = shared.getString("token", "defValue")!!
+        imagen = shared.getString("imagen", "defValue")!!
+        if (imagen.equals("unavailable"))
+                imagen = "https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg"
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -80,8 +86,10 @@ class MainActivity : AppCompatActivity() {
         val drawerHeader = navigationView.getHeaderView(0)
         val textViewUserName = drawerHeader.findViewById<TextView>(R.id.tv_username)
         val textViewEmail = drawerHeader.findViewById<TextView>(R.id.tv_email)
+        val imageViewUser = drawerHeader.findViewById<ImageView>(R.id.iv_user)
         textViewUserName.text = user
         textViewEmail.text = email
+        Glide.with(this).load(imagen).into(imageViewUser)
         navigationView.menu.findItem(R.id.logout).setOnMenuItemClickListener {item ->
             with(shared.edit()) {
                 clear()
@@ -95,6 +103,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initList() {
         contactsViewModel.listContacts(token)
+        //contactsViewModel.listContacts("token que no funciona para que falle")
+
     }
 
     private fun initNavElements() {

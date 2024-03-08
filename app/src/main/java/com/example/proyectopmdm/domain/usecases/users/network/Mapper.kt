@@ -34,24 +34,17 @@ fun Result<RegisterResponse>.toStringResponse() : String {
 
 fun Result<GetContactsResponse>.toDomain() : ContactsListModel {
     if (this.isSuccess) {
-        val contacts = this.getOrNull()!!.contactos
+        val contactList = this.getOrNull()!!
         val contactModels = emptyList<ContactModel>().toMutableList()
-        contacts.forEach {
-            /*if (it.imagen != null) {
+        contactList.contactos.forEach {
+            if (it.imagen != null) {
                 contactModels.add(ContactModel(it.id, it.id_usuario, it.nombre, it.nombre_completo, it.telefono, it.detalles, it.imagen))
             } else {
                 contactModels.add(ContactModel(it.id, it.id_usuario, it.nombre, it.nombre_completo, it.telefono, it.detalles,
                     "https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg"))
-            }*/
-            val i = it.imagen
-            Log.d("AAA", i)
-            i?.let {img ->
-                contactModels.add(ContactModel(it.id, it.id_usuario, it.nombre, it.nombre_completo, it.telefono, it.detalles, img))
-            }.whenNull {
-                contactModels.add(ContactModel(it.id, it.id_usuario, it.nombre, it.nombre_completo, it.telefono, it.detalles))
             }
         }
-        return ContactsListModel("", contactModels)
+        return ContactsListModel(contactList.details, contactModels)
     } else {
         return ContactsListModel(this.exceptionOrNull()!!.message!!)
     }
