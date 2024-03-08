@@ -29,4 +29,11 @@
         android:hint="Correo electrónico"
         android:inputType="textEmailAddress"
         />
+
+    <ImageView
+        android:id="@+id/iv_profile_picture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_camera_alt_24"
+        />
 </LinearLayout>

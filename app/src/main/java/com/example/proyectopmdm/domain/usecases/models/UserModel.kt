@@ -45,13 +45,14 @@ class UserModel (
         name: String,
         password: String,
         email: String,
+        imagen: String
     ) : this(
         name,
         password,
         email,
         token = "",
         details = "",
-        imagen = ""
+        imagen
     )
 
     // Constructor para login
