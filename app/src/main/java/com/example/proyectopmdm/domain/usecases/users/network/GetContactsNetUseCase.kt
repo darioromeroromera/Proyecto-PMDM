@@ -10,7 +10,7 @@ class GetContactsNetUseCase @Inject constructor(
     private val contactsService: ContactsNetService
 ) {
     suspend operator fun invoke(token: String) : ContactsListModel {
-        var contactsResult = contactsService.getContacts(token)
+        val contactsResult = contactsService.getContacts(token)
         return contactsResult.toDomain()
     }
 }

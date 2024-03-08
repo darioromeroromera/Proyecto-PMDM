@@ -86,10 +86,10 @@ class LoginActivity : AppCompatActivity() {
         binding.btnRegister.setOnClickListener { view ->
             val dialog = RegisterDialogue(
                 {
-                    fieldsUser ->
+                    newUser ->
                         lifecycleScope.launch {
 
-                            val saveState = saveUser(fieldsUser)
+                            val saveState = saveUser(newUser)
                             Toast.makeText(activityContext, saveState, Toast.LENGTH_SHORT).show()
                         }
                 })

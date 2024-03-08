@@ -14,8 +14,23 @@ class RegisterRequest(
 
     @SerializedName("password")
     @Expose
-    val password: String
+    val password: String,
+
+    @SerializedName("imagen")
+    @Expose
+    val image: String?
 ) {
+    constructor(
+        email: String,
+        name: String,
+        password: String
+    ) : this(
+        email,
+        name,
+        password,
+        image = null
+    )
+
     @SerializedName("disponible")
     @Expose
     val disponible: String = "1"

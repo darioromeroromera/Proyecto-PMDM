@@ -28,8 +28,9 @@ fun Result<LoginResponse>.toDomain() : UserModel {
 fun Result<RegisterResponse>.toStringResponse() : String {
     if (this.isSuccess)
         return "Usuario añadido correctamente"
-    else
+    else {
         return this.exceptionOrNull()!!.message!!
+    }
 }
 
 fun Result<GetContactsResponse>.toDomain() : ContactsListModel {

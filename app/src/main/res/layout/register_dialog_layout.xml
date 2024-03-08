@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     >
 
     <EditText
@@ -30,10 +31,33 @@
         android:inputType="textEmailAddress"
         />
 
-    <ImageView
-        android:id="@+id/iv_profile_picture"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/baseline_camera_alt_24"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/iv_take_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_camera_alt_24"
+            android:layout_margin="10dp"
+            />
+
+        <ImageView
+            android:id="@+id/iv_pick_from_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_photo_library_24"
+            android:layout_margin="10dp"
+            />
+    </LinearLayout>
+
+
+
+    <ImageView
+        android:id="@+id/iv_profile_picture"
+        android:layout_width="363dp"
+        android:layout_height="255dp"
         />
 </LinearLayout>

@@ -2,11 +2,8 @@ package com.example.proyectopmdm.ui.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.proyectopmdm.domain.usecases.users.db.GetUserNameOnlyUseCase
-import com.example.proyectopmdm.domain.usecases.users.db.GetUserUseCase
-import com.example.proyectopmdm.domain.usecases.users.db.SaveUserUseCase
 import com.example.proyectopmdm.domain.usecases.models.UserModel
-import com.example.proyectopmdm.domain.usecases.users.network.InsertUseCase
+import com.example.proyectopmdm.domain.usecases.users.network.RegisterUseCase
 import com.example.proyectopmdm.domain.usecases.users.network.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -17,7 +14,7 @@ class UserViewModel @Inject constructor(
     /*private val saveUserUseCase: SaveUserUseCase,
     private val getUserNameOnlyUseCase: GetUserNameOnlyUseCase,*/
     private val loginUseCase: LoginUseCase,
-    private val insertUseCase: InsertUseCase
+    private val registerUseCase: RegisterUseCase
 ) : ViewModel(){
     val userLiveData = MutableLiveData<UserModel?>()
 
@@ -32,6 +29,6 @@ class UserViewModel @Inject constructor(
     }
 
     suspend fun saveUser(userModel: UserModel) : String {
-        return insertUseCase(userModel)
+        return registerUseCase(userModel)
     }
 }

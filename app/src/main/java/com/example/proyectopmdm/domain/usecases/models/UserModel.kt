@@ -8,7 +8,7 @@ class UserModel (
     val email: String,
     val token: String,
     val details: String,
-    val imagen: String
+    val imagen: String?
 ){
     // Constructor para detalles
     constructor(
@@ -36,7 +36,7 @@ class UserModel (
         email,
         token,
         details,
-        imagen = ""
+        imagen = null
     )
 
     // Constructor para registro
@@ -66,6 +66,6 @@ class UserModel (
         email = "",
         token = "",
         details = "",
-         imagen = ""
+        imagen = ""
     )
 }
