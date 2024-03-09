@@ -1,9 +1,8 @@
-package com.example.proyectopmdm.domain.usecases.users.network
+package com.example.proyectopmdm.domain.usecases.contacts.network
 
-import com.example.proyectopmdm.data.models.network.responses.GetContactsResponse
 import com.example.proyectopmdm.data.services.ContactsNetService
-import com.example.proyectopmdm.domain.usecases.models.ContactModel
 import com.example.proyectopmdm.domain.usecases.models.ContactsListModel
+import com.example.proyectopmdm.domain.usecases.users.network.toDomain
 import javax.inject.Inject
 
 class GetContactsNetUseCase @Inject constructor(

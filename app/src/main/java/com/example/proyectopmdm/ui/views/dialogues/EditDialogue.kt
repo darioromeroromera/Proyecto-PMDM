@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.bumptech.glide.Glide
 import com.example.proyectopmdm.R
 import com.example.proyectopmdm.databinding.DialogLayoutBinding
 import com.example.proyectopmdm.data.models.mem.Contacto
@@ -62,7 +63,6 @@ class EditDialogue(
             binding.etNombre.setText(args.getString(Fields.NAME_FIELD))
             binding.etNombreCompleto.setText(args.getString(Fields.FULL_NAME_FIELD))
             binding.etTelefono.setText(args.getString(Fields.PHONE_FIELD))
-            binding.etImagen.setText(args.getString(Fields.URL_FIELD))
             binding.etDetalles.setText(args.getString(Fields.DETAIL_FIELD))
         }
     }
@@ -73,7 +73,7 @@ class EditDialogue(
             binding.etNombre.text.toString(),
             binding.etNombreCompleto.text.toString(),
             binding.etTelefono.text.toString(),
-            binding.etImagen.text.toString(),
+            "",//binding.etImagen.text.toString(),
             binding.etDetalles.text.toString()
         )
     }

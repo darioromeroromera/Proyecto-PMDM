@@ -45,7 +45,7 @@ class UserModel (
         name: String,
         password: String,
         email: String,
-        imagen: String
+        imagen: String?
     ) : this(
         name,
         password,

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyectopmdm.data.models.mem.MutableRepository
+import com.example.proyectopmdm.data.models.network.MutableContactRepository
 import com.example.proyectopmdm.ui.views.MainActivity
 import com.example.proyectopmdm.databinding.FragmentRecyclerBinding
 import com.example.proyectopmdm.ui.adapter.ContactoAdapter
@@ -42,7 +43,7 @@ class RecyclerFragment : Fragment() {
             }
         )
 
-        mainActivity.contactsViewModel.errorLiveData.observe(
+        mainActivity.contactsViewModel.messageLiveData.observe(
             requireActivity(), { details ->
                 if (!details.equals("")) {
                     Toast.makeText(mainActivity as Context, details, Toast.LENGTH_SHORT).show()
@@ -59,8 +60,9 @@ class RecyclerFragment : Fragment() {
         val dialog = CreateDialogue(
             {
                 contact ->
-                    //mainActivity.contactsViewModel.addContact(contact)
-                    binding.rvContactos.layoutManager!!.scrollToPosition(MutableRepository.contacts.lastIndex)
+                    val token = mainActivity.shared.getString("token", "defValue")!!
+                    mainActivity.contactsViewModel.addContact(token,contact)
+                    binding.rvContactos.layoutManager!!.scrollToPosition(MutableContactRepository.contacts.lastIndex)
             })
         dialog.show(mainActivity.supportFragmentManager, "Añadir")
     }

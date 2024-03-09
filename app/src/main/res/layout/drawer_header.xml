@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/iv_user"
-        android:layout_width="250px"
-        android:layout_height="250px"
+        android:layout_width="200px"
+        android:layout_height="200px"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,8 @@
         app:layout_constraintVertical_bias="0.2"
         android:text="username"
         android:textColor="@color/white"
-        android:textSize="25sp"
+        android:textSize="20sp"
+        android:breakStrategy="balanced"
         />
 
     <TextView

@@ -1,4 +1,4 @@
-package com.example.proyectopmdm.data.models.network.responses
+package com.example.proyectopmdm.data.models.network.responses.auth
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

@@ -96,7 +96,7 @@ class RegisterDialogue(
 
     private fun createUser(view: View) : UserModel {
 
-        var urlImg = ""
+        var urlImg: String? = null
 
         bitmap?.let {
             urlImg = " data:image/jpeg;base64," + convert(it)!!

@@ -1,4 +1,4 @@
-package com.example.proyectopmdm.data.models.network.responses
+package com.example.proyectopmdm.data.models.network
 
 class ContactoNet(
     val id: Long,

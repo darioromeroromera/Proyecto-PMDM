@@ -1,4 +1,4 @@
-package com.example.proyectopmdm.domain.usecases.contacts
+package com.example.proyectopmdm.domain.usecases.contacts.db
 
 import com.example.proyectopmdm.data.models.mem.Contacto
 import com.example.proyectopmdm.data.models.mem.ContactsDao

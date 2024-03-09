@@ -1,18 +1,15 @@
 package com.example.proyectopmdm.ui.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.proyectopmdm.data.models.mem.Contacto
 import com.example.proyectopmdm.data.models.network.MutableContactRepository
-import com.example.proyectopmdm.domain.usecases.contacts.AddContactUseCase
-import com.example.proyectopmdm.domain.usecases.contacts.GetContactsUseCase
-import com.example.proyectopmdm.domain.usecases.contacts.RemoveContactUseCase
-import com.example.proyectopmdm.domain.usecases.contacts.UpdateContactUseCase
+import com.example.proyectopmdm.domain.usecases.contacts.db.AddContactUseCase
+import com.example.proyectopmdm.domain.usecases.contacts.db.RemoveContactUseCase
+import com.example.proyectopmdm.domain.usecases.contacts.db.UpdateContactUseCase
+import com.example.proyectopmdm.domain.usecases.contacts.network.AddContactsNetUseCase
 import com.example.proyectopmdm.domain.usecases.models.ContactModel
-import com.example.proyectopmdm.domain.usecases.models.ContactsListModel
-import com.example.proyectopmdm.domain.usecases.users.network.GetContactsNetUseCase
+import com.example.proyectopmdm.domain.usecases.contacts.network.GetContactsNetUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,14 +17,11 @@ import javax.inject.Inject
 class RecyclerViewModel @Inject constructor(
     //private val getContactsUseCase : GetContactsUseCase,
     private val getContactsNetUseCase: GetContactsNetUseCase,
-    private val addContactUseCase : AddContactUseCase,
-    private val removeContactUseCase : RemoveContactUseCase,
-    private val updateContactUseCase : UpdateContactUseCase
+    private val addContactsNetUseCase: AddContactsNetUseCase
 ) : ViewModel() {
-    //var contactsLiveData = MutableLiveData<List<Contacto>>()
     var contactsLiveData = MutableLiveData<MutableList<ContactModel>>()
 
-    var errorLiveData = MutableLiveData<String>("")
+    var messageLiveData = MutableLiveData<String>("")
 
     fun listContacts(token: String) {
         viewModelScope.launch {
@@ -35,7 +29,24 @@ class RecyclerViewModel @Inject constructor(
             contactsLiveData.value = contactList.contactos
             MutableContactRepository.contacts = contactList.contactos
 
-            errorLiveData.value = contactList.details
+            messageLiveData.value = contactList.details
+        }
+    }
+
+    fun addContact(token: String, newContact: ContactModel) {
+        viewModelScope.launch {
+            val data = addContactsNetUseCase(token, newContact)
+            if (data.imagen != null) {
+                newContact.id = data.insertId
+                newContact.imagen = data.imagen
+
+                val contactList = MutableContactRepository.contacts
+                contactList.add(newContact)
+
+                contactsLiveData.value = contactList
+            }
+
+            messageLiveData.value = data.details
         }
     }
 /*
