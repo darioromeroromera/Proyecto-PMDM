@@ -1,10 +1,12 @@
 package com.example.proyectopmdm.ui.adapter
 
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.proyectopmdm.databinding.CardviewLayoutBinding
 import com.example.proyectopmdm.data.models.mem.MutableRepository
+import com.example.proyectopmdm.data.models.network.MutableContactRepository
 import com.example.proyectopmdm.domain.usecases.models.ContactModel
 import com.example.proyectopmdm.ui.views.MainActivity
 import com.example.proyectopmdm.ui.views.dialogues.DeleteDialogue
@@ -47,9 +49,14 @@ class ViewHContacto(view: View) : RecyclerView.ViewHolder(view) {
 
         val dialog = DeleteDialogue(
             pos,
-            MutableRepository.contacts.get(pos).nombreCompleto,
+            MutableContactRepository.contacts.get(pos).nombreCompleto,
             {
-                    pos -> //mainActivity.contactsViewModel.removeContact(pos)
+                    pos ->
+                        val token = mainActivity.shared.getString("token", "defValue")!!
+                        val id = MutableContactRepository.contacts.get(pos).id!!
+                        mainActivity.contactsViewModel.removeContact(token, id, pos)
+
+                        //Toast.makeText(mainActivity, MutableContactRepository.contacts.get(pos).nombreCompleto, Toast.LENGTH_SHORT).show()
             })
         dialog.show(mainActivity.supportFragmentManager, "Borrar")
     }

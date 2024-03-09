@@ -4,10 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.proyectopmdm.data.models.network.MutableContactRepository
-import com.example.proyectopmdm.domain.usecases.contacts.db.AddContactUseCase
-import com.example.proyectopmdm.domain.usecases.contacts.db.RemoveContactUseCase
-import com.example.proyectopmdm.domain.usecases.contacts.db.UpdateContactUseCase
-import com.example.proyectopmdm.domain.usecases.contacts.network.AddContactsNetUseCase
+import com.example.proyectopmdm.domain.usecases.contacts.network.AddContactNetUseCase
+import com.example.proyectopmdm.domain.usecases.contacts.network.DeleteContactNetUseCase
 import com.example.proyectopmdm.domain.usecases.models.ContactModel
 import com.example.proyectopmdm.domain.usecases.contacts.network.GetContactsNetUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +15,8 @@ import javax.inject.Inject
 class RecyclerViewModel @Inject constructor(
     //private val getContactsUseCase : GetContactsUseCase,
     private val getContactsNetUseCase: GetContactsNetUseCase,
-    private val addContactsNetUseCase: AddContactsNetUseCase
+    private val addContactsNetUseCase: AddContactNetUseCase,
+    private val deleteContactNetUseCase: DeleteContactNetUseCase
 ) : ViewModel() {
     var contactsLiveData = MutableLiveData<MutableList<ContactModel>>()
 
@@ -44,18 +43,36 @@ class RecyclerViewModel @Inject constructor(
                 contactList.add(newContact)
 
                 contactsLiveData.value = contactList
+                MutableContactRepository.contacts = contactList
             }
 
             messageLiveData.value = data.details
         }
     }
-/*
-    fun addContact(contact: Contacto) {
+
+    fun removeContact(token: String, id: Long, pos: Int) {
         viewModelScope.launch {
-            val contacts = addContactUseCase(contact)
-            contactsLiveData.value = contacts
+            val responseData = deleteContactNetUseCase(token, id)
+            if (!responseData.get(0).equals("error")) {
+                val contactList = MutableContactRepository.contacts
+                contactList.removeAt(pos)
+                contactsLiveData.value = contactList
+                MutableContactRepository.contacts = contactList
+            }
+            messageLiveData.value = responseData.get(1)
         }
+
+
     }
+
+    fun findContactoById(id: Long) : Int {
+        val position = MutableContactRepository.contacts.indexOfFirst {
+            it.id == id
+        }
+
+        return position
+    }
+/*
 
     fun removeContact(pos: Int) {
         viewModelScope.launch {

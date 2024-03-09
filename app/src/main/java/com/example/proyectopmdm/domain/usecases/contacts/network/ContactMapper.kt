@@ -1,6 +1,7 @@
 package com.example.proyectopmdm.domain.usecases.contacts.network
 
 import com.example.proyectopmdm.data.models.network.responses.contact.AddContactResponse
+import com.example.proyectopmdm.data.models.network.responses.contact.DeleteContactResponse
 import com.example.proyectopmdm.data.models.network.responses.contact.GetContactsResponse
 import com.example.proyectopmdm.domain.usecases.models.AddContactData
 import com.example.proyectopmdm.domain.usecases.models.ContactModel
@@ -36,5 +37,17 @@ fun Result<AddContactResponse>.toDomain() : AddContactData {
         }
     } else {
         return AddContactData(this.exceptionOrNull()!!.message!!)
+    }
+}
+
+fun Result<DeleteContactResponse>.toArray() : List<String> {
+    if (this.isSuccess) {
+        val data = this.getOrNull()!!
+        if (data.details == null) {
+            return listOf(data.result, "Contacto borrado correctamente")
+        }
+        return listOf(data.result, data.details)
+    } else {
+        return listOf("error", this.exceptionOrNull()!!.message!!)
     }
 }

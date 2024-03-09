@@ -6,7 +6,7 @@ import com.example.proyectopmdm.domain.usecases.models.AddContactData
 import com.example.proyectopmdm.domain.usecases.models.ContactModel
 import javax.inject.Inject
 
-class AddContactsNetUseCase@Inject constructor(
+class AddContactNetUseCase@Inject constructor(
     private val contactsService: ContactsNetService
 ) {
     suspend operator fun invoke(token: String, newContact: ContactModel) : AddContactData{
