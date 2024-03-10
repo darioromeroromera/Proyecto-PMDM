@@ -39,7 +39,6 @@ class RecyclerFragment : Fragment() {
         mainActivity.contactsViewModel.contactsLiveData.observe(
             requireActivity(), { contacts ->
                 binding.rvContactos.adapter = adapter
-                adapter.notifyDataSetChanged()
             }
         )
 

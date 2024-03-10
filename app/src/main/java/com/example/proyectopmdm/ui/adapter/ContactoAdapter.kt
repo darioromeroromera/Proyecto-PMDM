@@ -7,7 +7,7 @@ import com.example.proyectopmdm.R
 import com.example.proyectopmdm.data.models.mem.MutableRepository
 import com.example.proyectopmdm.data.models.network.MutableContactRepository
 
-class ContactoAdapter: RecyclerView.Adapter<ViewHContacto>() {
+class ContactoAdapter(): RecyclerView.Adapter<ViewHContacto>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHContacto {
         val layoutInflater = LayoutInflater.from(parent.context)
         val cardViewLayout = R.layout.cardview_layout

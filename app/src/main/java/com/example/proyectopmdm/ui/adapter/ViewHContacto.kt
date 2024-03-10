@@ -1,5 +1,6 @@
 package com.example.proyectopmdm.ui.adapter
 
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,9 @@ import com.example.proyectopmdm.ui.views.MainActivity
 import com.example.proyectopmdm.ui.views.dialogues.DeleteDialogue
 import com.example.proyectopmdm.ui.views.dialogues.EditDialogue
 import com.example.proyectopmdm.ui.views.fragments.RecyclerFragmentDirections
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class ViewHContacto(view: View) : RecyclerView.ViewHolder(view) {
     var binding: CardviewLayoutBinding
@@ -26,7 +30,10 @@ class ViewHContacto(view: View) : RecyclerView.ViewHolder(view) {
         binding.tvNombreContacto.text = contacto.nombre
         binding.tvNombreCompleto.text = contacto.nombreCompleto
         binding.tvTelefono.text = contacto.telefono
-        Glide.with(itemView.context).load(contacto.imagen).centerCrop().into(binding.ivContacto)
+        contacto.imagen?.let {
+            Log.d("AAA", "IMAGEN URL IS " + contacto.imagen.toString())
+            Glide.with(itemView.context).load(contacto.imagen).centerCrop().into(binding.ivContacto)
+        }
         setOnClickListener(adapterPosition, contacto)
     }
 
@@ -55,8 +62,6 @@ class ViewHContacto(view: View) : RecyclerView.ViewHolder(view) {
                         val token = mainActivity.shared.getString("token", "defValue")!!
                         val id = MutableContactRepository.contacts.get(pos).id!!
                         mainActivity.contactsViewModel.removeContact(token, id, pos)
-
-                        //Toast.makeText(mainActivity, MutableContactRepository.contacts.get(pos).nombreCompleto, Toast.LENGTH_SHORT).show()
             })
         dialog.show(mainActivity.supportFragmentManager, "Borrar")
     }
@@ -65,7 +70,10 @@ class ViewHContacto(view: View) : RecyclerView.ViewHolder(view) {
         val dialog = EditDialogue(
             pos,
             contacto
-        ) { contact, pos -> //mainActivity.contactsViewModel.updateContact(pos, contact)
+        ) { contact, pos ->
+            val token = mainActivity.shared.getString("token", "defValue")!!
+            val id = MutableContactRepository.contacts.get(pos).id!!
+            mainActivity.contactsViewModel.updateContact(token, contact, id, pos)
         }
         dialog.show(mainActivity.supportFragmentManager, "Editar")
     }
