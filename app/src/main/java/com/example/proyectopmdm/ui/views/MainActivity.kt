@@ -60,12 +60,12 @@ class MainActivity : AppCompatActivity() {
         email = shared.getString("email", "defValue")!!
         token = shared.getString("token", "defValue")!!
         imagen = shared.getString("imagen", "defValue")!!
+        // En la API si el usuario no tiene imagen lo cambié para que lance unavailable
         if (imagen.equals("unavailable"))
                 imagen = "https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg"
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        Toast.makeText(this, "Pulsada navegación", Toast.LENGTH_SHORT)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
@@ -75,8 +75,7 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.homeFragment,
                 R.id.recyclerFragment,
-                R.id.aboutUsFragment,
-                R.id.securityFragment
+                R.id.aboutUsFragment
             ), binding.mainDrawer)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navigationView.setupWithNavController(navController)
@@ -99,6 +98,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initList() {
+        // Se modifica el viewModel y eso cambia el repositorio singleton
         contactsViewModel.listContacts(token)
         //contactsViewModel.listContacts("token que no funciona para que falle")
 

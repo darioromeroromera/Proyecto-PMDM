@@ -128,6 +128,7 @@ class RegisterDialogue(
             takePicture()
     }
 
+    // Para cámara
     private fun takePicture() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startCameraActivity.launch(intent)
